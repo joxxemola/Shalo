@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Tulipán</title>
+        <style>
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body {
+            width:100vw; height:100vh;
+            background:#000;
+            display:flex; align-items:center; justify-content:center;
+            overflow:hidden;
+        }
+        svg {
+            width:min(90vw, 90vh);
+            height:min(90vw, 90vh);
+        }
+
+        @keyframes sway {
+            0%   { transform: rotate(0deg); }
+            30%  { transform: rotate(1.5deg); }
+            60%  { transform: rotate(-1.2deg); }
+            100% { transform: rotate(0deg); }
+        }
+        @keyframes pulse {
+            0%,100% { opacity: 0.6; }
+            50%      { opacity: 1; }
+        }
+        @keyframes fadeIn {
+            from { opacity:0; transform: translateY(18px); }
+            to   { opacity:1; transform: translateY(0); }
+        }
+
+        .tulip {
+            transform-origin: 200px 420px;
+            animation: sway 4s ease-in-out infinite;
+        }
+        .glow-outer {
+            animation: pulse 3.5s ease-in-out infinite;
+        }
+        svg {
+            animation: fadeIn 1.8s ease-out forwards;
+        }
+        </style>
+    </head>
+
+    <body>
+        <svg viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <!-- Outer ambient glow -->
+            <radialGradient id="ambientGlow" cx="50%" cy="62%" r="45%">
+            <stop offset="0%"   stop-color="#ff4fa0" stop-opacity="0.18"/>
+            <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+            </radialGradient>
+
+            <!-- Petal gradient: dark base → bright pink center -->
+            <radialGradient id="petalMain" cx="50%" cy="75%" r="65%" gradientUnits="objectBoundingBox">
+            <stop offset="0%"   stop-color="#ff80c8"/>
+            <stop offset="55%"  stop-color="#f020a0"/>
+            <stop offset="100%" stop-color="#8a005a"/>
+            </radialGradient>
+
+            <!-- Petal glow filter -->
+            <filter id="petalGlow" x="-60%" y="-60%" width="220%" height="220%">
+            <feGaussianBlur stdDeviation="6" result="blur"/>
+            <feMerge>
+                <feMergeNode in="blur"/>
+                <feMergeNode in="blur"/>
+                <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+            </filter>
+
+            <!-- Soft glow filter for stem/leaf -->
+            <filter id="softGlow" x="-40%" y="-40%" width="180%" height="180%">
+            <feGaussianBlur stdDeviation="3" result="blur"/>
+            <feMerge>
+                <feMergeNode in="blur"/>
+                <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+            </filter>
+
+            <!-- Stem gradient -->
+            <linearGradient id="stemGrad" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%"   stop-color="#1a5c18"/>
+            <stop offset="50%"  stop-color="#3aaa30"/>
+            <stop offset="100%" stop-color="#1a5c18"/>
+            </linearGradient>
+        </defs>
+
+        <!-- Ambient background glow -->
+        <ellipse class="glow-outer" cx="200" cy="310" rx="160" ry="200" fill="url(#ambientGlow)"/>
+
+        <g class="tulip">
+            <!-- Stem -->
+            <path d="M200,420 C198,380 196,340 200,290"
+                stroke="url(#stemGrad)" stroke-width="4.5"
+                fill="none" stroke-linecap="round"
+                filter="url(#softGlow)"/>
+
+            <!-- Leaf -->
+            <path d="M199,355 C180,335 155,320 148,300 C168,308 188,325 200,340"
+                fill="#2e8a28" filter="url(#softGlow)" opacity="0.9"/>
+
+            <!-- ── FLOWER ── -->
+            <!-- Back petals (darker) -->
+            <g filter="url(#petalGlow)">
+            <!-- back-left -->
+            <ellipse cx="200" cy="220" rx="32" ry="72"
+                    fill="#9a0068" opacity="0.75"
+                    transform="rotate(-38, 200, 290)"/>
+            <!-- back-right -->
+            <ellipse cx="200" cy="220" rx="32" ry="72"
+                    fill="#9a0068" opacity="0.75"
+                    transform="rotate(38, 200, 290)"/>
+            <!-- back-center -->
+            <ellipse cx="200" cy="215" rx="30" ry="74"
+                    fill="#b00075" opacity="0.7"
+                    transform="rotate(0, 200, 290)"/>
+            </g>
+
+            <!-- Front petals (bright glowing pink) -->
+            <g filter="url(#petalGlow)">
+            <!-- front-left -->
+            <ellipse cx="200" cy="218" rx="34" ry="75"
+                    fill="url(#petalMain)"
+                    transform="rotate(-22, 200, 290)"/>
+            <!-- front-right -->
+            <ellipse cx="200" cy="218" rx="34" ry="75"
+                    fill="url(#petalMain)"
+                    transform="rotate(22, 200, 290)"/>
+            </g>
+
+            <!-- Inner bright center -->
+            <ellipse cx="200" cy="232" rx="20" ry="52"
+                    fill="#ff9dd8" opacity="0.45"
+                    filter="url(#petalGlow)"/>
+
+            <!-- Highlight streak -->
+            <ellipse cx="190" cy="240" rx="6" ry="28"
+                    fill="#ffe0f5" opacity="0.35"
+                    transform="rotate(-8, 190, 240)"/>
+        </g>
+        </svg>
+    </body>
+</html>
