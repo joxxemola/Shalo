@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Carta de Amor y Amistad</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&family=Great+Vibes&display=swap" rel="stylesheet">
+
+    <style>
+    :root{
+      --bg1: #ffebee;
+      --card:#ffffff;
+      --ink:#45313c;
+      --accent:#e91e63;
+      --muted:#8a6a77;
+      --scrollbg:#fff0f5;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%; margin:0}
+body {
+  display: flex;
+  justify-content: center;    /* Centra horizontalmente */
+  align-items: flex-start;    /* 📌 Alinea arriba, no en el medio */
+  min-height: 100vh;          
+  margin: 0;
+  padding: 40px 20px;         /* Espacio arriba, abajo y a los lados */
+  background-color: #ffe6eb;
+  box-sizing: border-box;
+}
+
+
+
+    /* Corazones cayendo */
+    .falling {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .falling span {
+      position: absolute;
+      top: -10px;
+      width: 14px; height: 14px;
+      background: var(--accent);
+      transform: rotate(45deg);
+      animation: fall 7s linear infinite;
+      opacity: 0.8;
+    }
+    .falling span::before,
+    .falling span::after {
+      content:"";
+      position: absolute;
+      width: 14px; height: 14px;
+      background: inherit;
+      border-radius: 50%;
+    }
+    .falling span::before { top: -7px; left: 0; }
+    .falling span::after { left: -7px; top: 0; }
+
+    @keyframes fall {
+      0% { transform: translateY(-10vh) rotate(45deg) scale(1); opacity: 1; }
+      100% { transform: translateY(110vh) rotate(45deg) scale(0.8); opacity: 0; }
+    }
+
+    /* Variaciones corazones con diferentes tonos */
+    .falling span:nth-child(1){ left:10%; background:#e91e63; animation-duration:6s; }
+    .falling span:nth-child(2){ left:25%; background:#f48fb1; animation-duration:8s; animation-delay:2s; opacity:0.6; transform:scale(1.2) rotate(45deg);}
+    .falling span:nth-child(3){ left:40%; background:#ec407a; animation-duration:7s; animation-delay:1s; }
+    .falling span:nth-child(4){ left:55%; background:#ad1457; animation-duration:9s; animation-delay:3s; opacity:0.7; }
+    .falling span:nth-child(5){ left:70%; background:#f06292; animation-duration:6s; animation-delay:1.5s; transform:scale(1.3) rotate(45deg);}
+    .falling span:nth-child(6){ left:80%; background:#d81b60; animation-duration:10s; animation-delay:2.5s; opacity:0.5; }
+    .falling span:nth-child(7){ left:90%; background:#c2185b; animation-duration:7s; animation-delay:0.5s; }
+
+    /* Pantalla inicio */
+ .inicio{
+  text-align:center;
+  background:var(--card);
+  padding:40px 20px;
+  border-radius:16px;
+  box-shadow:0 8px 20px rgba(0,0,0,0.15);
+  z-index:1;
+  margin:40px auto;
+  max-width:600px;
+}
+
+    .inicio h1 { color:var(--accent); margin-bottom:15px; font-family: 'Dancing Script', cursive; }
+    .boton {
+      display:inline-block;
+      background:var(--accent);
+      color:white;
+      padding:12px 24px;
+      border-radius:60px;
+      font-weight:bold;
+      cursor:pointer;
+      transition: background 0.3s;
+    }
+    .boton:hover { background:#f06292; color:white; }
+
+    /* Carta */
+    .card{
+      width:min(820px,96vw);
+      background:var(--card);
+      border-radius:20px;
+      box-shadow:0 12px 30px rgba(0,0,0,0.12);
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,0.6);
+      display:none;
+      z-index:1;
+      opacity:0;
+      transform:translateY(20px) scale(0.95);
+      animation: fadeIn 0.9s ease forwards;
+    }
+    @keyframes fadeIn {
+      to { opacity:1; transform:translateY(0) scale(1); }
+    }
+    header{
+      display:flex; gap:16px; align-items:center;
+      padding:24px;
+      background:linear-gradient(180deg,#fff,#fff7fb);
+      border-bottom:1px solid #fde7ef;
+    }
+    .icon{width:56px; height:56px; flex:0 0 56px}
+    h1{ margin:0; font-size:26px; font-family: 'Dancing Script', cursive; }
+    p.lead{ margin:6px 0 0; color:var(--muted); font-size:14px }
+
+    main{ padding:28px; }
+    .pill{ background:#fff3f7; border:1px solid #ffdfe9; padding:10px 12px; border-radius:14px; font-weight:600; color:var(--accent); padding: 10px, 20px; }
+
+    .paper{
+      background: repeating-linear-gradient(transparent, transparent 28px, rgba(255,230,240,0.6) 29px);
+      border:1px solid #ffe9f0;
+      padding:22px;
+      border-radius:14px;
+      position:relative;
+    }
+    .deco{ color:var(--accent); font-weight:700; margin-bottom:8px; font-family:'Great Vibes', cursive; font-size:22px; }
+
+    .message {
+      font-size:18px;
+      line-height:1.6;
+      font-family:'Georgia','Times New Roman',serif;
+      padding:20px;
+      text-align:justify;
+      background-color:#fff0f5;
+      border-radius:10px;
+    }
+
+    .signature{
+      margin-top:22px;
+      display:flex;
+      justify-content:flex-end;
+      font-family:'Brush Script MT','Great Vibes',cursive;
+      font-size:22px;
+      color:#b30954;
+      text-shadow:1px 1px 2px rgba(0,0,0,0.1);
+    }
+
+    footer{
+      padding:18px 28px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      border-top:1px solid #fff0f4;
+      background:linear-gradient(180deg,transparent,#fff6f9);
+    }
+    .date{ color:var(--muted); font-size:13px }
+
+    @media print{
+      body{ background:white }
+      .card{ box-shadow:none; border-radius:0; width:100% }
+      header,footer{ display:none }
+      main{ padding:16mm }
+    }
+
+    /* Mobile */
+    @media (max-width:520px){
+      h1{ font-size:20px }
+      .card{ border-radius:12px; }
+      main{ padding:18px; }
+      .message{ font-size:15px; }
+      .signature{ font-size:18px }
+    }
+
+    #mostrarCarta{ display:none; }
+    #mostrarCarta:checked ~ .inicio { display:none; }
+    #mostrarCarta:checked ~ .card { display:block; }
+    </style>
+  </head>
+
+  <body>
+    <!-- corazones cayendo -->
+    <div class="falling">
+      <span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span>
+    </div>
+
+    <input type="checkbox" id="mostrarCarta">
+
+    <div class="inicio">
+      <h1>¡Feliz Día del Amor y la Amistad!</h1>
+      <h1>Mi tomate negro</h1>
+      <br>
+      <p>Te amo de aquí a la luna, a pasitos de tortuga bebé y mocha,</p>
+      <p>de aquí al infinito, a brincos de medusa bebé,</p>
+      <p>de aquí al sol, a pasitos de caracol.</p>
+      <br>
+      <p>Te amo molecular y cuánticamente,</p>
+      <p>te amo en todo el tiempo y el espacio.</p>
+      <br>
+      <p>En fin… TE AMO.</p>
+      <div class="signature">— Tu Don dramático</div>
+      <br><br>
+      <label for="mostrarCarta" class="boton">Abrir Carta</label>
+      <br>
+      <p>“Porque en cada jueves y en cada abrazo, siempre encontré mi eternidad contigo.”</p>
+    </div>
+
+    <article class="card">
+      <header>
+        <svg class="icon" viewBox="0 0 64 64" fill="none">
+          <path d="M20 12c-6 0-10 4-10 10 0 12 22 22 22 22s22-10 22-22c0-6-4-10-10-10-5 0-8 3-12 8-4-5-7-8-12-8z" fill="#e91e63"/></svg>
+        <div>
+          <h1>¡Feliz día de Amor y Amistad! Mi tomate negro</h1>
+        </div>
+      </header>
+      <br>
+      <div class="pill">Para: Salomé Diaz Ocoró Trululu</div>
+      <main>
+        <section class="paper">
+          <div class="deco">My love...</div>
+            <div class="message">
+              Te conocí entre pasillos prohibidos,
+              donde las miradas hablaban más que las palabras,
+              y los abrazos se volvían refugio,
+              capaces de detener el mundo entero.
+              <br><br>
+              Fuiste jueves, porque en los jueves sucedía la magia:
+              el día en que te confesé lo que sentía,
+              el día de los besos,
+              el día de la graduación,
+              el día en que entendí que el destino siempre nos quería juntos.
+              <br><br>
+              Tus abrazos fueron faro en mi tormenta,
+              ternura que desarmaba mis pensamientos,
+              calor que vencía al frío de las despedidas.
+              Y aunque diciembre nos alejara,
+              aprendimos a vivir en las palabras,
+              a contarnos los días,
+              a desearnos buenos sueños
+              y despertar juntos en la distancia.
+              <br><br>
+              Mi niña, eres historia escrita en mis días,
+              recuerdo en mis manos,
+              latido en mis noches.
+              Eres lo más especial que el tiempo me regaló,
+              y aunque no sé de dónde nació tanto amor,
+              solo sé que nació para quedarse,
+              porque tú siempre serás mi jueves,
+              mi abrazo,
+              mi razón de sonreír.
+            </div>
+          <div class="signature">— Tu Don dramático</div>
+        </section>
+
+        <p>“Porque en cada jueves y en cada abrazo, siempre encontré mi eternidad contigo.” Feliz día mi niña. I love so much.</p>
+      </main>
+
+      <footer>
+        <div class="date">18/09/25</div>
+        <div class="note">Siempre tuyo 💌</div>
+      </footer>
+    </article>
+  </body>
+</html>

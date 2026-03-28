@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <title>Carta para mi amor - ICFES</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+    :root {
+      --color-principal: #e91e63;
+      --color-principal-hover: #d81b60;
+      --color-fondo: #fff8f0;
+    }
+
+    .poema p{
+      text-align:center;
+
+    }
+
+    /* Corazón HTML con animación */
+    .corazon-shape {
+      position: relative;
+      width: 50px;
+      height: 50px;
+      background-color: var(--color-principal);
+      transform: rotate(-45deg);
+      margin: 0 auto 10px;
+      animation: latido 1s infinite;
+    }
+
+    .corazon-shape::before,
+    .corazon-shape::after {
+      content: "";
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      background-color: var(--color-principal);
+      border-radius: 50%;
+    }
+
+    .corazon-shape::before {
+      top: -25px;
+      left: 0;
+    }
+
+    .corazon-shape::after {
+      left: 25px;
+      top: 0;
+    }
+
+    @keyframes latido {
+      0%, 100% { transform: rotate(-45deg) scale(1); }
+      50% { transform: rotate(-45deg) scale(1.2); }
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #ffe4e1, var(--color-fondo));
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .carta {
+      background: #ffffff;
+      padding: 30px;
+      border-radius: 20px;
+      max-width: 600px;
+      width: 90%;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      color: #444;
+      margin: 40px 20px;
+    }
+
+    .titulo {
+      font-size: 24px;
+      font-weight: bold;
+      color: var(--color-principal);
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    p {
+      text-align: justify;
+      color: black;
+    }
+
+    .mensaje {
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    .frase {
+      font-style: italic;
+      text-align: center;
+      color: #777;
+      margin: 20px 0;
+    }
+
+    .firma {
+      text-align: right;
+      margin-top: 30px;
+      font-weight: bold;
+      color: #555;
+    }
+
+    #toggle {
+      display: none;
+    }
+
+    .contenido-extra {
+      display: none;
+    }
+
+    #toggle:checked ~ .contenido-extra {
+      display: block;
+    }
+
+    #toggle:checked + .ver-mas {
+      display: none;
+    }
+
+    .ver-mas {
+      display: block;
+      background-color: var(--color-principal);
+      color: white;
+      padding: 10px 20px;
+      border-radius: 10px;
+      text-align: center;
+      font-weight: bold;
+      cursor: pointer;
+      margin: 20px auto;
+      transition: background-color 0.3s ease;
+    }
+
+    .ver-mas:hover {
+      background-color: var(--color-principal-hover);
+    }
+
+    .pie-pagina {
+      font-size: 14px;
+      color: #555;
+      margin-bottom: 30px;
+      text-align: center;
+      max-width: 600px;
+      padding: 0 20px;
+    }
+
+    @media (max-width: 480px) {
+      body {
+        padding: 10px;
+      }
+
+      .titulo {
+        font-size: 20px;
+      }
+
+      .mensaje {
+        font-size: 14px;
+      }
+
+      .carta {
+        padding: 20px;
+        margin: 30px 10px;
+      }
+    }
+
+    @media print {
+      body {
+        background: none;
+      }
+
+      .ver-mas,
+      #toggle,
+      .pie-pagina {
+        display: none !important;
+      }
+
+      .contenido-extra {
+        display: block !important;
+      }
+
+      .carta {
+        box-shadow: none;
+        border: none;
+        margin: 0;
+        padding: 0;
+      }
+    }
+    </style>
+  </head>
+
+  <body>
+
+    <div class="carta">
+      <div class="titulo">Para ti, mi TomateNegro 💕</div>
+
+      <br>
+
+      <div class="mensaje">
+        <p><strong>Mi niña,</strong></p>
+      </div>
+        
+      <br>
+      <div class="corazon-shape"></div>
+      <br>
+      
+      <div class="poema">
+        <div class="frase">
+          <strong>
+            <p>"Tus brazos son mi lugar seguro,
+            <br>
+            ni el frío, ni el mundo me asustan ahí.
+            <br>
+            Es tan simple… y tan puro, 
+            <br>
+            que en tu abrazo, me vuelvo a construir."</p>
+          </strong>
+        </div>
+      </div>
+
+      <br>
+
+      <input type="checkbox" id="toggle">
+      <label for="toggle" class="ver-mas">Ver más</label>
+
+      <div class="contenido-extra">
+        <div class="mensaje">
+          <p>Se acerca un momento muy importante para ti: el ICFES. Y aunque sé que puede parecer abrumador, quiero que sepas que confío en que la vas a romper en ese examen. Estoy tan orgulloso de todo lo que has logrado hasta ahora y de todo lo que vas a lograr. 🌟</p>
+
+          <div class="frase">"Confía en ti como yo confío en ti."</div>
+
+          <p>Eres una mujer increíble, inteligente, fuerte y valiente. Este examen es solo una prueba más, que estoy seguro vas a superar como todo lo que te propones. Tienes todo para brillar, y lo vas a lograr.</p>
+
+          <p>Así que cuando estés frente a esa hoja, respira, sonríe y recuerda cuánto vales. Yo estaré pensando en ti, mandándote toda mi energía y esperando con ansias abrazarte después.</p>
+
+          <div class="frase">"Recuerda que un examen no mide tu valor como persona."</div>
+
+          <p>Recuerda que es solo un examen más, y no mide tu inteligencia, sino tu resistencia. No le des tanta importancia a la nota que saques después, porque no te va a definir como persona. Recuerda que siempre voy a estar muy orgulloso de todo lo que hagas.</p>
+
+          <div class="frase">
+            "Cuando salgas de ese salón, recuerda que lo más valioso que llevas no es el resultado, sino la certeza de que lo diste todo… y yo siempre estaré aquí para celebrarlo contigo."
+          </div>
+          <br>
+          
+          <p><strong>Te mando spider-besos por toda la cara y millones de abrazos mi niña. 🕷️💋🫷</strong> Tu DonBromitas te extrana un poco (demasiado), mi amor. El mundo está esperando todo lo que vas a lograr. ¡Tú puedes!</p>
+        </div>
+      </div>
+      <div class="firma">Con todo mi amor,<br>Tu Don dramático ❤️</div>
+    </div>
+
+    <div class="pie-pagina">
+      Si quieres, lo puedes imprimir para conservarlo.
+    </div>
+
+  </body>
+</html>

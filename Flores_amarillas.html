@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Flores amarillas - Salo</title>
+  <style>
+    html { 
+      scroll-behavior: smooth; 
+    }
+
+    .show-btn {
+      padding: 12px 28px;
+      font-size: 1rem;
+      font-weight: bold;
+      border: none;
+      border-radius: 50px;
+      background: linear-gradient(135deg, #ffda6b, #ff9a9e);
+      color: #2b2b2b;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: inline-block;
+      position: relative;
+      overflow: hidden;
+      z-index:2;
+      animation: fadeUp 1.2s ease;
+    }
+    .show-btn:hover {
+      transform: scale(1.07);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+      color: #fff;
+    }
+    .show-btn::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: rgba(255,255,255,0.4);
+      transform: skewX(-25deg);
+      transition: left 0.7s ease;
+    }
+    .show-btn:hover::before { left: 100%; }
+
+    .intro {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      position:relative;
+      z-index:2;
+      padding: 0 1rem;
+    }
+
+    #toggle { display:none; }
+    .wrapper { display: none; }
+    #toggle:checked ~ .wrapper {
+      display: block;
+      animation: fadeIn 1s ease;
+    }
+    #toggle:checked ~ .intro { display: none; }
+
+    @keyframes fadeIn {
+      from {opacity:0; transform: scale(0.95);}
+      to {opacity:1; transform: scale(1);}
+    }
+
+    :root{
+      --bg:#f6f7fb;
+      --paper:#fffef9;
+      --ink:#2b2b2b;
+      --accent:#ffd54d;
+      --accent-dark:#f4b400;
+      --shadow:0 20px 40px rgba(0,0,0,.12);
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      display:grid;
+      place-items:center;
+      background:radial-gradient(1200px 600px at 70% -20%, #fff 0 40%, transparent 41%), var(--bg);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      color:var(--ink);
+      position:relative;
+      overflow-x:hidden;
+    }
+
+    .wrapper{padding:16px; width:100%; max-width:920px; }
+
+    .card{
+      position:relative;
+      background:var(--paper);
+      border-radius:20px;
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      padding: clamp(16px, 5vw, 40px);
+      border:1px solid #f0ead6;
+      isolation:isolate;
+    }
+
+    .card::before{
+      content:"";
+      position:absolute; inset:0;
+      background:
+        repeating-linear-gradient( to bottom,
+          rgba(0,0,0,.03) 0 36px,
+          transparent 36px 72px
+        );
+      pointer-events:none;
+      mix-blend-mode:multiply;
+    }
+
+    h1{ font-size: clamp(1.3rem, 2.4vw, 2rem); margin:0 0 .5rem; text-align:center;}
+    .date{opacity:.7; font-size:.9rem; margin-bottom:1rem; text-align:center;}
+    p{line-height:1.7; font-size: clamp(.95rem, 1.2vw, 1.05rem); margin:.75rem 0;}
+
+    .poema{
+      text-align:center;
+      font-style:italic;
+      font-family: 'Georgia', 'Times New Roman', serif;
+      font-size:1rem;
+      line-height:1.8;
+      margin: 1.2rem auto;
+      max-width: 600px;
+      padding: 0 1rem;
+
+      /* Animación entrada */
+      animation: fadeUp 1.2s ease;
+    }
+
+    @keyframes fadeUp {
+      from {opacity:0; transform:translateY(20px);}
+      to {opacity:1; transform:translateY(0);}
+    }
+
+    /* FLORES */
+    .garden{
+      position:absolute; inset:0;
+      pointer-events:none;
+      z-index:0;
+      opacity:.9;
+    }
+    .real-flower {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      animation: sway 4s ease-in-out infinite alternate;
+    }
+    @keyframes sway {
+      from { transform: rotate(-3deg); }
+      to { transform: rotate(3deg); }
+    }
+    .real-flower .petal {
+      position: absolute;
+      width: 50px;
+      height: 80px;
+      background: radial-gradient(circle at 30% 30%, #fff9c4 0%, #ffd54f 70%, #f4b400 100%);
+      border-radius: 50% 50% 40% 40%;
+      transform-origin: bottom center;
+      box-shadow: inset 0 -2px 6px rgba(0,0,0,.2);
+    }
+    .real-flower .petal:nth-child(1) { transform: rotate(0deg) translateY(-20%); }
+    .real-flower .petal:nth-child(2) { transform: rotate(45deg) translateY(-20%); }
+    .real-flower .petal:nth-child(3) { transform: rotate(90deg) translateY(-20%); }
+    .real-flower .petal:nth-child(4) { transform: rotate(135deg) translateY(-20%); }
+    .real-flower .petal:nth-child(5) { transform: rotate(180deg) translateY(-20%); }
+    .real-flower .petal:nth-child(6) { transform: rotate(225deg) translateY(-20%); }
+    .real-flower .petal:nth-child(7) { transform: rotate(270deg) translateY(-20%); }
+    .real-flower .petal:nth-child(8) { transform: rotate(315deg) translateY(-20%); }
+
+    /* Flores distribuidas por la pantalla */
+    .f1{ left:10%; top:15%; }
+    .f2{ left:80%; top:20%; }
+    .f3{ left:15%; top:75%; }
+    .f4{ left:82%; top:75%; }
+    .f5{ left:50%; top:90%; }
+    .f6{ left:45%; top:10%; }
+    .f7{ left:5%; top:50%; }
+    .f8{ left:95%; top:50%; }
+
+    .content{ position:relative; z-index:2; }
+
+    /* 📱 Ajustes móviles */
+    @media (max-width:600px) {
+      body { padding: 10px; }
+      .card { padding: 20px 14px; border-radius: 16px; }
+      .poema { font-size: .95rem; line-height: 1.6; }
+      h1 { font-size: 1.4rem; }
+      .show-btn { font-size: .95rem; padding: 10px 22px; animation: fadeUp 1.2s ease;}
+      .real-flower { width: 70px; height: 70px; }
+      .real-flower .petal { width: 35px; height: 55px; }
+    }
+  </style>
+</head>
+<body>
+<input type="checkbox" id="toggle">
+
+<!-- FLORES GLOBALES -->
+<div class="garden" aria-hidden="true">
+  <div class="real-flower f1"><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div></div>
+  <div class="real-flower f2"><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div></div>
+  <div class="real-flower f3"><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div></div>
+  <div class="real-flower f4"><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div></div>
+  <div class="real-flower f5"><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div></div>
+  <div class="real-flower f6"><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div></div>
+  <div class="real-flower f7"><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div></div>
+  <div class="real-flower f8"><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div></div>
+</div>
+
+<div class="intro">
+  <h2>Mi tomate negro 💛</h2>
+  <p>Tus Flores amarillas y algo más... </p>
+  <label for="toggle" class="show-btn" aria-label="Abrir carta de amor">💕 Ver la carta 💕</label>
+</div>
+
+<div class="wrapper">
+  <div class="card">
+    <div class="content" role="main">
+      <h1>Para ti, Mi Tomate Negro 💛</h1>
+      <div class="date">18 de Septiembre de 2025</div>
+      <br>
+      <br>
+      <div class="poema">
+        Cuando el sol se despide en el horizonte,<br>
+        el cielo arde en tonos de esperanza.<br>
+        Así tu luz, como un suave atardecer,<br>
+        abraza mis días con calma y confianza.<br><br>
+
+        Las flores amarillas, encendidas,<br>
+        Reflejan la fuerza de tu sonrisa.<br>
+        Son la promesa de un mañana cálido,<br>
+        el eco dorado de tu caricia.<br><br>
+
+        Si alguna vez oscurece el camino,<br>
+        mira un campo vestido de amarillos,<br>
+        mira el ocaso y su manto divino:<br>
+        allí estaré, entre cielos y flores,<br>
+        recordándote que mi amor es eterno.
+      </div>
+      <br>
+      <br>
+      <p style="text-align:center; margin-top:1.2rem">
+        Gracias por estar, y por confiar. Gracias por tanto. <br> Te amo.
+      </p>
+      <p style="margin-top:1rem; font-weight:600; text-align:center">Con cariño,</p>
+      <p style="text-align:center"><em>Tu Don dramático Spider-Man</em></p>
+    </div>
+  </div>
+</div>
+</body>
+</html>
