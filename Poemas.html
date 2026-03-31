@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <title>Cuaderno de poemas</title>
+
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap');
+
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+
+      body {
+        background: #f7f4ef;
+        color: #1a1814;
+        font-family: 'EB Garamond', serif;
+      }
+
+      .app {
+        max-width: 560px;
+        margin: 0 auto;
+        padding: 80px 32px;
+      }
+
+      /* HEADER */
+      .site-title {
+        font-family: 'Cormorant Garamond', serif;
+        font-style: italic;
+        font-size: 13px;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        color: #9a9188;
+      }
+
+      .site-count {
+        font-size: 12px;
+        color: #c5bdb3;
+        margin-top: 5px;
+      }
+
+      .divider {
+        width: 32px;
+        height: 1px;
+        background: #d4cfc8;
+        margin: 28px 0;
+      }
+
+      /* POEMAS */
+      .poem-card {
+        padding: 36px 0;
+        border-bottom: 1px solid #e8e3dc;
+        position: relative;
+      }
+
+      .poem-title {
+        font-size: 11px;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: #b5ada3;
+        margin-bottom: 16px;
+      }
+
+      .poem-text {
+        font-size: 19px;
+        line-height: 1.85;
+        white-space: pre-line;
+        font-style: italic;
+      }
+
+      /* BOTÓN ELIMINAR */
+      .poem-delete {
+        position: absolute;
+        right: 0;
+        top: 36px;
+        border: none;
+        background: transparent;
+        cursor: pointer;
+        font-size: 16px;
+        color: #b5ada3;
+        padding: 6px 10px;
+        border-radius: 20px;
+        transition: all 0.2s;
+      }
+
+      .poem-delete:hover {
+        background: #1a1814;
+        color: #f7f4ef;
+      }
+
+      /* EMPTY */
+      .empty {
+        text-align: center;
+        padding: 60px;
+        color: #c5bdb3;
+        font-style: italic;
+      }
+
+      .add-toggle {
+        margin-top: 40px;
+        cursor: pointer;
+        font-family: 'Cormorant Garamond', serif;
+        letter-spacing: 0.2em;
+        font-size: 12px;
+        color: #9a9188;
+        background: none;
+        border: none;
+        transition: color 0.2s;
+      }
+
+      .add-toggle:hover {
+        color: #1a1814;
+      }
+
+      input, textarea {
+        width: 100%;
+        border: none;
+        border-bottom: 1px solid #d4cfc8;
+        padding: 8px 0;
+        background: transparent;
+        font-size: 16px;
+        margin-bottom: 20px;
+        font-style: italic;
+      }
+
+      .btn {
+        padding: 10px 20px;
+        border: none;
+        font-family: 'Cormorant Garamond', serif;
+        letter-spacing: 0.2em;
+        font-size: 11px;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+
+
+      .btn-save {
+        background: #1a1814;
+        color: #f7f4ef;
+      }
+
+      .btn-save:hover {
+        background: #3a3530;
+      }
+
+      .btn-cancel {
+        background: transparent;
+        color: #b5ada3;
+      }
+
+      .btn-cancel:hover {
+        color: #1a1814;
+      }
+
+      .actions {
+        display: flex;
+        gap: 16px;
+        margin-top: 10px;
+      }
+
+
+      .toggle-dark {
+        margin-top: 10px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 11px;
+        letter-spacing: 0.2em;
+        color: #9a9188;
+        transition: color 0.2s;
+      }
+
+      .toggle-dark:hover {
+        color: #1a1814;
+      }
+
+      /* MODO OSCURO */
+      body.dark {
+        background: #12110f;
+        color: #f5f3ef;
+      }
+
+      body.dark .site-title { color: #aaa39a; }
+      body.dark .site-count { color: #777069; }
+      body.dark .divider { background: #2a2622; }
+
+      body.dark .poem-card {
+        border-bottom: 1px solid #2a2622;
+      }
+
+      body.dark .poem-title {
+        color: #8a827a;
+      }
+
+      body.dark .poem-text {
+        color: #e8e4df;
+      }
+
+      body.dark .poem-delete {
+        color: #777069;
+      }
+
+      body.dark .poem-delete:hover {
+        background: #f5f3ef;
+        color: #12110f;
+      }
+
+      body.dark input,
+      body.dark textarea {
+        border-bottom: 1px solid #44403a;
+        color: #f5f3ef;
+      }
+
+      body.dark .btn-save {
+        background: #f5f3ef;
+        color: #12110f;
+      }
+
+      body.dark .btn-save:hover {
+        background: #d6d1cb;
+      }
+
+      body.dark .btn-cancel {
+        color: #8a827a;
+      }
+
+      body.dark .btn-cancel:hover {
+        color: #f5f3ef;
+      }
+
+      body.dark .add-toggle {
+        color: #8a827a;
+      }
+
+      body.dark .add-toggle:hover {
+        color: #f5f3ef;
+      }           
+    </style>
+  </head>
+
+  <body>
+
+    <div class="app">
+      <button class="toggle-dark" onclick="toggleDarkMode()">Modo oscuro</button>
+      <br>
+      <br> 
+      <p class="site-title">Cuaderno de poemas para Shalo</p>
+      <p id="count" class="site-count"></p>
+      
+      <div class="divider"></div>
+
+      <div id="poemList"></div>
+
+      <button class="add-toggle" onclick="toggleForm()">+ Añadir poema</button>
+      
+
+      <div id="form" style="display:none; margin-top:20px;">
+        <input id="title" placeholder="Sin título">
+        <textarea id="text" rows="6" placeholder="Escribe aquí..."></textarea>
+
+        <div class="actions">
+          <button class="btn btn-save" onclick="addPoem()">Guardar</button>
+          <button class="btn btn-cancel" onclick="cancel()">Cancelar</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const defaultPoems = [
+        { id: 1, title: "", text: "La noche es oscura, pero mi amor brilla,\n como una estrella en el cielo sin fin.\n En tus ojos, mi alma encuentra su hogar,\n y en tus brazos, mi corazón late con calor." },
+        { id: 2, title: "", text: "" }
+      ];
+
+      let poems = JSON.parse(localStorage.getItem("poems-collection")) || defaultPoems;
+
+      function save() {
+        localStorage.setItem("poems-collection", JSON.stringify(poems));
+      }
+
+      function render() {
+        const list = document.getElementById("poemList");
+        const count = document.getElementById("count");
+
+        count.textContent =
+          poems.length === 0 ? "sin poemas" :
+          poems.length === 1 ? "1 poema" :
+          poems.length + " poemas";
+
+        if (poems.length === 0) {
+          list.innerHTML = '<div class="empty">El cuaderno está vacío.</div>';
+          return;
+        }
+
+        list.innerHTML = poems.map(p => `
+          <div class="poem-card">
+            <p class="poem-title">${p.title}</p>
+            <p class="poem-text">${p.text}</p>
+            <button class="poem-delete" onclick="deletePoem(${p.id})">Eliminar</button>
+          </div>
+        `).join("");
+      }
+
+      function addPoem() {
+        const title = document.getElementById("title").value.trim() || "Sin título";
+        const text = document.getElementById("text").value.trim();
+        if (!text) return;
+
+        poems.unshift({ id: Date.now(), title, text });
+        save();
+        render();
+        cancel();
+      }
+
+      function deletePoem(id) {
+        if (!confirm("¿Eliminar este poema?")) return;
+        poems = poems.filter(p => p.id !== id);
+        save();
+        render();
+      }
+
+      function toggleForm() {
+        document.getElementById("form").style.display = "block";
+      }
+
+      function cancel() {
+        document.getElementById("form").style.display = "none";
+        document.getElementById("title").value = "";
+        document.getElementById("text").value = "";
+      }
+
+      render();
+
+      function toggleDarkMode() {
+        document.body.classList.toggle("dark");
+        
+        const isDark = document.body.classList.contains("dark");
+        localStorage.setItem("dark-mode", isDark);
+      }
+
+      // cargar preferencia al iniciar
+      (function () {
+        const saved = localStorage.getItem("dark-mode");
+        if (saved === "true") {
+          document.body.classList.add("dark");
+        }
+      })();
+    </script>
+
+  </body>
+</html>
