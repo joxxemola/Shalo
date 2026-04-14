@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Noche Estrellada</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --phrase-color: rgba(230, 240, 255, 0.92);
+  }
+
+  html, body {
+    height: 100%;
+    width: 100%;
+  }
+
+  body {
+    min-height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    font-family: 'Cormorant Garamond', serif;
+    cursor: default;
+    position: relative;
+  }
+
+  .sky {
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(180deg, #020510 0%, #07102a 55%, #0f1e42 100%);
+    z-index: 0;
+  }
+
+  canvas#stars {
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .shooting {
+    position: fixed;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    overflow: hidden;
+  }
+  .shooting span {
+    position: absolute;
+    display: block;
+    height: 2px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, white, transparent);
+    opacity: 0;
+    animation: shoot 8s linear infinite;
+  }
+  .shooting span:nth-child(1) { top: 12%; left: 65%; width: 120px; animation-delay: 1s; }
+  .shooting span:nth-child(2) { top: 22%; left: 78%; width: 80px;  animation-delay: 4.5s; }
+  .shooting span:nth-child(3) { top: 8%;  left: 45%; width: 100px; animation-delay: 7s; }
+  .shooting span:nth-child(4) { top: 18%; left: 88%; width: 60px;  animation-delay: 2.8s; }
+
+  @keyframes shoot {
+    0%   { opacity: 0; transform: translateX(0) translateY(0) rotate(-35deg); }
+    5%   { opacity: 1; }
+    20%  { opacity: 0; transform: translateX(-200px) translateY(80px) rotate(-35deg); }
+    100% { opacity: 0; transform: translateX(-200px) translateY(80px) rotate(-35deg); }
+  }
+
+  .moon-wrap {
+    position: fixed;
+    top: 5%;
+    left: 28%;
+    transform: translateX(-50%);
+    z-index: 3;
+    pointer-events: none;
+  }
+  .moon-halo {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    background: radial-gradient(circle,
+      rgba(210,230,255,0.12) 0%,
+      rgba(160,200,255,0.06) 35%,
+      transparent 70%
+    );
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: moonPulse 6s ease-in-out infinite;
+  }
+  @keyframes moonPulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50%       { transform: scale(1.04); opacity: 0.88; }
+  }
+  .moon {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 38% 35%,
+      #f0f4ff 0%, #d8e4ff 30%, #b8caee 60%, #8aaad4 100%
+    );
+    box-shadow:
+      0 0 30px 10px rgba(180,210,255,0.35),
+      0 0 70px 25px rgba(140,180,255,0.18),
+      0 0 140px 50px rgba(100,150,240,0.08),
+      inset -10px -7px 25px rgba(60,90,160,0.3);
+    position: relative;
+    overflow: hidden;
+  }
+  .moon::before {
+    content: '';
+    position: absolute;
+    width: 15px; height: 15px;
+    border-radius: 50%;
+    background: rgba(100,140,200,0.25);
+    top: 22px; left: 24px;
+    box-shadow:
+      18px 22px 0 5px rgba(100,140,200,0.18),
+      -4px 36px 0 3px rgba(100,140,200,0.15),
+      32px 12px 0 2px rgba(100,140,200,0.12);
+  }
+
+  .mountains {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 4;
+    pointer-events: none;
+  }
+
+  /* ── LAYOUT ── */
+  .page {
+    position: relative;
+    z-index: 10;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1.5rem 160px;
+  }
+
+  .card {
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .label-top {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(0.58rem, 1.8vw, 0.72rem);
+    letter-spacing: 0.4em;
+    color: rgba(180, 210, 255, 0.55);
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 0.8rem;
+  }
+
+  .divider {
+    width: 65px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(180,210,255,0.5), transparent);
+    margin: 0.8rem auto;
+  }
+
+  .deco {
+    color: rgba(200, 220, 255, 0.35);
+    font-size: 0.65rem;
+    letter-spacing: 0.6em;
+    margin: 0.3rem 0;
+  }
+
+  .mensaje {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1rem, 2.6vw, 1.3rem);
+    font-style: italic;
+    font-weight: 300;
+    color: var(--phrase-color);
+    text-align: center;
+    line-height: 1.9;
+    text-shadow:
+      0 0 25px rgba(150,190,255,0.35),
+      0 0 55px rgba(100,150,255,0.18);
+    padding: 0.4rem 0.5rem;
+  }
+
+  .firma {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(0.5rem, 1.4vw, 0.63rem);
+    letter-spacing: 0.15em;
+    color: rgba(180, 210, 255, 0.4);
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 2;
+    padding: 0 0.5rem;
+    animation: blink 4s ease-in-out infinite;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 0.4; }
+    50%       { opacity: 0.8; }
+  }
+</style>
+</head>
+<body>
+
+<div class="sky"></div>
+<canvas id="stars"></canvas>
+
+<div class="shooting">
+  <span></span><span></span><span></span><span></span>
+</div>
+
+<div class="moon-wrap">
+  <div class="moon-halo">
+    <div class="moon"></div>
+  </div>
+</div>
+
+<svg class="mountains" viewBox="0 0 1440 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+  <defs>
+    <linearGradient id="mtn1" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0a1530"/><stop offset="100%" stop-color="#050d20"/>
+    </linearGradient>
+    <linearGradient id="mtn2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#060f25"/><stop offset="100%" stop-color="#030810"/>
+    </linearGradient>
+  </defs>
+  <path d="M0,165 L80,100 L180,132 L280,72 L400,118 L520,52 L640,100 L720,44 L820,88 L960,128 L1080,62 L1200,110 L1320,78 L1440,100 L1440,200 L0,200Z" fill="url(#mtn1)" opacity="0.7"/>
+  <path d="M0,185 L120,142 L240,160 L360,128 L480,152 L600,118 L700,142 L800,108 L920,138 L1040,124 L1160,148 L1280,132 L1440,142 L1440,200 L0,200Z" fill="url(#mtn2)"/>
+</svg>
+
+<div class="page">
+  <div class="card">
+
+    <p class="label-top">I love you from the moon</p>
+
+    <div class="divider"></div>
+    <p class="deco">✦ &nbsp; ✦ &nbsp; ✦</p>
+
+    <p class="mensaje">
+      Descansa, que tengas una linda noche,<br>
+      que mi Diosito te cuide de todo mal y peligro.<br><br>
+      Que mientras duermas recuperes energías<br>
+      para el día siguiente.<br><br>
+      Descansa mi princesa,<br>
+      te mando muchos besitos por toda la cara y muchos abrazos de oso 🌙
+    </p>
+
+    <p class="deco">✦ &nbsp; ✦ &nbsp; ✦</p>
+    <div class="divider"></div>
+
+    <p class="firma">
+      Te amo de aquí a la luna a pasitos de tortuga mocha<br>
+      de aquí al sol a pasitos de caracol<br>
+      de aquí al infinito a brinquitos de medusa bebé<br>
+      Te amo en todos los universos y dimensiones que existen ✨
+    </p>
+
+  </div>
+</div>
+
+<script>
+  const canvas = document.getElementById('stars');
+  const ctx = canvas.getContext('2d');
+
+  function resize() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    drawStars();
+  }
+  function rand(min, max) { return Math.random() * (max - min) + min; }
+
+  function drawStars() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    const count = Math.floor((canvas.width * canvas.height) / 2200);
+    for (let i = 0; i < count; i++) {
+      const x = rand(0, canvas.width);
+      const y = rand(0, canvas.height * 0.85);
+      const r = rand(0.2, 1.6);
+      const alpha = rand(0.3, 1.0);
+      if (r > 1.1) {
+        const grd = ctx.createRadialGradient(x, y, 0, x, y, r * 5);
+        grd.addColorStop(0, `rgba(200,220,255,${alpha * 0.6})`);
+        grd.addColorStop(1, 'transparent');
+        ctx.beginPath();
+        ctx.arc(x, y, r * 5, 0, Math.PI * 2);
+        ctx.fillStyle = grd;
+        ctx.fill();
+      }
+      ctx.beginPath();
+      ctx.arc(x, y, r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(240,245,255,${alpha})`;
+      ctx.fill();
+    }
+  }
+
+  window.addEventListener('resize', resize);
+  resize();
+
+  const twinkleStars = [];
+  for (let i = 0; i < 60; i++) {
+    twinkleStars.push({
+      x: Math.random() * window.innerWidth,
+      y: Math.random() * window.innerHeight * 0.85,
+      r: Math.random() * 1.2 + 0.3,
+      phase: Math.random() * Math.PI * 2,
+      speed: Math.random() * 0.02 + 0.008
+    });
+  }
+
+  function animateTwinkle() {
+    twinkleStars.forEach(s => {
+      s.phase += s.speed;
+      const alpha = 0.4 + 0.6 * Math.abs(Math.sin(s.phase));
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(255,255,255,${alpha})`;
+      ctx.fill();
+    });
+    requestAnimationFrame(animateTwinkle);
+  }
+  animateTwinkle();
+</script>
+</body>
+</html>
