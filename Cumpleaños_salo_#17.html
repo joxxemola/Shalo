@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Feliz Cumpleaños - Carta Especial</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;900&family=Quicksand:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(145deg, #fad0c4 0%, #fad0c4 35%, #ffd1b3 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            font-family: 'Quicksand', sans-serif;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Decoraciones de fondo con animaciones */
+        .bg-floating {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .flower {
+            position: absolute;
+            font-size: 2.5rem;
+            opacity: 0.4;
+            animation: floatFlower 14s infinite ease-in-out;
+            filter: drop-shadow(0 8px 12px rgba(0,0,0,0.05));
+        }
+
+        @keyframes floatFlower {
+            0% { transform: translateY(0px) rotate(0deg); opacity: 0.2; }
+            50% { transform: translateY(-35px) rotate(6deg); opacity: 0.6; }
+            100% { transform: translateY(0px) rotate(0deg); opacity: 0.2; }
+        }
+
+        .confetti-particle {
+            position: absolute;
+            width: 10px;
+            height: 20px;
+            background: radial-gradient(circle, #ffb347, #ff6b6b);
+            opacity: 0.7;
+            animation: confettiFall 7s linear infinite;
+            border-radius: 2px;
+        }
+
+        @keyframes confettiFall {
+            0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* Tarjeta principal */
+        .birthday-card {
+            position: relative;
+            z-index: 10;
+            max-width: 750px;
+            width: 100%;
+            background: rgba(255, 250, 245, 0.96);
+            backdrop-filter: blur(0px);
+            border-radius: 68px 68px 72px 72px;
+            box-shadow: 0 40px 55px -20px rgba(0,0,0,0.3), 0 8px 20px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.8);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            animation: cardGlow 2s ease-out;
+        }
+
+        @keyframes cardGlow {
+            0% { transform: scale(0.96); opacity: 0; box-shadow: 0 0 0 rgba(255, 160, 122, 0);}
+            100% { transform: scale(1); opacity: 1; box-shadow: 0 30px 45px -15px rgba(0,0,0,0.3);}
+        }
+
+        /* Header decorado */
+        .card-header {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 55%, #ffd9b5 100%);
+            padding: 2.2rem 2rem 1.8rem;
+            text-align: center;
+            position: relative;
+            border-bottom: 4px solid rgba(255,215,180,0.7);
+        }
+
+        .card-header::before {
+            content: "✨";
+            font-size: 3rem;
+            position: absolute;
+            top: 10px;
+            left: 25px;
+            opacity: 0.6;
+            animation: sparkle 2s infinite;
+        }
+
+        .card-header::after {
+            content: "✨";
+            font-size: 2.5rem;
+            position: absolute;
+            bottom: 8px;
+            right: 25px;
+            opacity: 0.6;
+            animation: sparkle 2s infinite 0.5s;
+        }
+
+        @keyframes sparkle {
+            0% { opacity: 0.3; transform: scale(0.9);}
+            100% { opacity: 0.9; transform: scale(1.2);}
+        }
+
+        .birthday-greeting {
+            font-size: 3.4rem;
+            font-family: 'Playfair Display', serif;
+            font-weight: 800;
+            background: linear-gradient(120deg, #a13e2d, #e4896b, #f5b88c);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            text-shadow: 0 2px 8px rgba(255,210,170,0.4);
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+        }
+
+        .name {
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: #a1422f;
+            background: rgba(255,235,215,0.6);
+            display: inline-block;
+            padding: 0.2rem 1.4rem;
+            border-radius: 80px;
+            backdrop-filter: blur(2px);
+            margin-top: 0.5rem;
+            font-family: 'Playfair Display', serif;
+            animation: pulseName 1.8s infinite;
+        }
+
+        @keyframes pulseName {
+            0% { transform: scale(1); opacity: 0.9; }
+            50% { transform: scale(1.02); background: rgba(255,220,190,0.9);}
+            100% { transform: scale(1); opacity: 0.9; }
+        }
+
+        /* Cuerpo Carta */
+        .card-body {
+            padding: 2rem 2.2rem 1.8rem;
+            background: #fffef7;
+        }
+
+        .message {
+            font-size: 1.2rem;
+            line-height: 1.65;
+            color: #4a2e2b;
+            font-weight: 500;
+            text-align: center;
+            margin-bottom: 1.8rem;
+            padding: 0 0.5rem;
+        }
+
+        .message p {
+            margin-bottom: 1rem;
+        }
+
+        .signature-line {
+            font-style: italic;
+            font-size: 1.15rem;
+            text-align: right;
+            border-top: 2px dashed #f7cdb0;
+            padding-top: 1rem;
+            margin-top: 0.8rem;
+            color: #b1624b;
+            font-weight: 500;
+        }
+
+        /* Corazones flotantes animados en el texto */
+        .floating-heart {
+            display: inline-block;
+            animation: heartBeat 1.2s infinite;
+            font-size: 1.2rem;
+            margin: 0 2px;
+        }
+
+        @keyframes heartBeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); color: #e6654a; }
+        }
+
+        /* Decoración de globos e imágenes */
+        .deco-stars {
+            display: flex;
+            justify-content: center;
+            gap: 1.2rem;
+            margin: 1rem 0 1.2rem;
+            font-size: 1.8rem;
+            opacity: 0.8;
+        }
+
+        .deco-stars span {
+            animation: starPop 1.5s alternate infinite;
+            display: inline-block;
+        }
+
+        @keyframes starPop {
+            from { transform: translateY(0px); opacity: 0.5;}
+            to { transform: translateY(-6px); opacity: 1;}
+        }
+
+        /* Sección de regalo animado / sorpresa */
+        .gift-section {
+            display: flex;
+            justify-content: center;
+            margin: 1.8rem 0 0.8rem;
+        }
+
+        .gift-box {
+            background: #ffc8a2;
+            width: 70px;
+            height: 70px;
+            border-radius: 18px;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.25s;
+            box-shadow: 0 12px 18px -8px rgba(0,0,0,0.2);
+            animation: wobble 2s infinite;
+        }
+
+        .gift-box:before {
+            content: "🎁";
+            position: absolute;
+            font-size: 3rem;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            transition: transform 0.2s;
+        }
+
+        .gift-box:hover:before {
+            transform: translate(-50%, -50%) scale(1.15);
+        }
+
+        @keyframes wobble {
+            0%, 100% { transform: rotate(0deg);}
+            25% { transform: rotate(3deg);}
+            75% { transform: rotate(-3deg);}
+        }
+
+        .click-message {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #b97f64;
+            margin-top: 0.6rem;
+            transition: opacity 0.3s;
+        }
+
+        /* Pie con decoración floral */
+        .card-footer {
+            background: #ffe7db;
+            padding: 1rem 1.5rem;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #ad6b53;
+            border-top: 2px solid #ffdbbc;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .flower-small {
+            font-size: 1.3rem;
+            animation: rotateFlower 6s infinite linear;
+            display: inline-block;
+        }
+
+        @keyframes rotateFlower {
+            0% { transform: rotate(0deg);}
+            100% { transform: rotate(360deg);}
+        }
+
+        .footer-text {
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+
+        /* Botón interactivo para animación extra */
+        .surprise-btn {
+            background: none;
+            border: 2px solid #e48b6b;
+            color: #b1472f;
+            padding: 0.3rem 1rem;
+            border-radius: 50px;
+            font-family: inherit;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.8rem;
+        }
+
+        .surprise-btn:hover {
+            background: #e48b6b;
+            color: white;
+            transform: scale(1.02);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+        }
+
+        /* Adaptación mobile */
+        @media (max-width: 550px) {
+            body {
+                padding: 1rem;
+            }
+            .birthday-greeting {
+                font-size: 2.3rem;
+            }
+            .name {
+                font-size: 1.5rem;
+            }
+            .message {
+                font-size: 1rem;
+            }
+            .card-body {
+                padding: 1.5rem;
+            }
+            .card-header {
+                padding: 1.5rem 1rem;
+            }
+        }
+
+        /* onditas y cintas */
+        .ribbon {
+            position: absolute;
+            top: -10px;
+            right: 25px;
+            width: 110px;
+            background: #ffb28b;
+            padding: 0.3rem;
+            text-align: center;
+            border-radius: 60px 60px 20px 20px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            color: #6f2e1a;
+            transform: rotate(5deg);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 15;
+        }
+
+        .ribbon span {
+            animation: blinkRibbon 1s infinite;
+        }
+
+        @keyframes blinkRibbon {
+            0% { opacity: 0.7;}
+            100% { opacity: 1;}
+        }
+
+        /* toque de vela animada */
+        .candle-icon {
+            display: inline-block;
+            animation: flicker 0.9s infinite;
+            margin: 0 2px;
+        }
+
+        @keyframes flicker {
+            0% { opacity: 0.8; text-shadow: 0 0 0px yellow;}
+            100% { opacity: 1; text-shadow: 0 0 4px orange;}
+        }
+    </style>
+</head>
+<body>
+
+<div class="bg-floating">
+    <!-- flores y confeti generados dinámicamente con JS -->
+</div>
+
+<div class="birthday-card">
+    <div class="ribbon">
+        <span>🎂 Hoy es especial 🎂</span>
+    </div>
+    <div class="card-header">
+        <div class="birthday-greeting">Feliz Cumpleaños #17</div>
+        <div class="name">🌸 My Tomate Negro 🌸</div>
+        <div class="deco-stars">
+            <span>✨</span><span>⭐</span><span>🌟</span><span>✨</span>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="message">
+            <p>🎈 <span class="floating-heart">❤️</span> Hoy el mundo brilla un poco más porque <strong>tú</strong> existes. <span class="floating-heart">💖</span> 🎈</p>
+            <p>Que cada rayo de sol te traiga alegrías, que cada estrella ilumine tus sueños y que este nuevo año esté lleno de <strong>magia, risas y mucho amor</strong>. ✨🌸</p>
+            <p>Eres una mujer fuerte, especial y llena de luz. Mereces todo lo bonito que la vida puede dar. <span class="candle-icon">🕯️</span> Sopla las velas pidiendo un deseo, que hoy el universo conspira a tu favor.</p>
+            <div class="signature-line">
+                Con cariño y admiración, <br>🎀 <strong>Para ti en tu día especial</strong> 🎀
+            </div>
+        </div>
+
+        <div class="gift-section">
+            <div class="gift-box" id="giftSurprise"></div>
+        </div>
+        <div class="click-message" id="clickMsg">💝 Haz clic en el regalo para una sorpresa 💝</div>
+
+        <!-- Pequeño botón adicional para chispas -->
+        <div style="display: flex; justify-content: center; margin: 1rem 0 0.3rem;">
+            <button class="surprise-btn" id="extraSparkleBtn">✨ Llena de estrellas ✨</button>
+        </div>
+    </div>
+    <div class="card-footer">
+        <span class="flower-small">🌸🌼🌸</span>
+        <span class="footer-text">🎵 Que la felicidad te acompañe siempre 🎵</span>
+        <span class="flower-small">🌺🌷🌻</span>
+    </div>
+</div>
+
+<script>
+    // Crear decoraciones flotantes de fondo (flores y confeti)
+    function createFloatingDecorations() {
+        const bgContainer = document.querySelector('.bg-floating');
+        const flowers = ['🌸', '🌼', '🌻', '🌺', '🌸', '🎈', '🎀', '💐', '🌷', '🌟', '✨', '⭐'];
+        // crear 25 elementos flotantes
+        for (let i = 0; i < 32; i++) {
+            const isFlower = Math.random() > 0.4;
+            const el = document.createElement('div');
+            if (isFlower) {
+                el.classList.add('flower');
+                const randomFlower = flowers[Math.floor(Math.random() * flowers.length)];
+                el.textContent = randomFlower;
+                el.style.fontSize = (Math.random() * 1.5 + 1.2) + 'rem';
+            } else {
+                el.classList.add('confetti-particle');
+                const hue = Math.random() * 360;
+                el.style.background = `radial-gradient(circle, hsl(${hue}, 80%, 65%), hsl(${hue}, 85%, 55%))`;
+                el.style.width = (Math.random() * 12 + 5) + 'px';
+                el.style.height = (Math.random() * 15 + 8) + 'px';
+            }
+            // posiciones aleatorias
+            const leftPos = Math.random() * 100;
+            const animDuration = Math.random() * 12 + 8;
+            const animDelay = Math.random() * 15;
+            el.style.left = leftPos + '%';
+            el.style.bottom = '-5%';
+            el.style.position = 'absolute';
+            el.style.animationDuration = animDuration + 's';
+            el.style.animationDelay = animDelay + 's';
+            if (!isFlower) {
+                el.style.animation = `confettiFall ${animDuration}s linear infinite`;
+                el.style.opacity = Math.random() * 0.7 + 0.3;
+            } else {
+                el.style.animation = `floatFlower ${animDuration}s infinite ease-in-out`;
+                el.style.opacity = Math.random() * 0.5 + 0.2;
+            }
+            bgContainer.appendChild(el);
+        }
+        // añadir más flores móviles por la parte superior y laterales
+        for (let i = 0; i < 12; i++) {
+            const floatingHeart = document.createElement('div');
+            floatingHeart.textContent = '💖';
+            floatingHeart.style.position = 'absolute';
+            floatingHeart.style.fontSize = (Math.random() * 20 + 12) + 'px';
+            floatingHeart.style.left = Math.random() * 100 + '%';
+            floatingHeart.style.top = Math.random() * 90 + '%';
+            floatingHeart.style.opacity = 0.3;
+            floatingHeart.style.animation = `floatFlower ${Math.random() * 12 + 8}s infinite alternate`;
+            floatingHeart.style.pointerEvents = 'none';
+            bgContainer.appendChild(floatingHeart);
+        }
+    }
+
+    // Sorpresa al hacer clic en el regalo
+    const giftDiv = document.getElementById('giftSurprise');
+    const msgDiv = document.getElementById('clickMsg');
+    let surpriseTriggered = false;
+    function showSurprise() {
+        if (surpriseTriggered) {
+            // Mostrar mensaje extra con animación fugaz, pero no repetir explosión
+            msgDiv.innerHTML = "🎉💖 ¡Ya recibiste tu sorpresa! Pero te deseo lo mejor siempre 💖🎉";
+            msgDiv.style.fontWeight = "bold";
+            setTimeout(() => {
+                if(!surpriseTriggered) return;
+                setTimeout(() => { msgDiv.innerHTML = "💝 ¡Gracias por celebrar conmigo! 💝"; }, 1800);
+            }, 1200);
+            return;
+        }
+        surpriseTriggered = true;
+        // Efecto visual: lanzar muchos corazones y confeti rápido
+        for (let i = 0; i < 55; i++) {
+            const particle = document.createElement('div');
+            particle.textContent = ['🌸', '🎉', '✨', '💖', '❤️', '🎂', '⭐', '🎁'][Math.floor(Math.random() * 8)];
+            particle.style.position = 'fixed';
+            particle.style.left = (giftDiv.getBoundingClientRect().left + 30) + 'px';
+            particle.style.top = (giftDiv.getBoundingClientRect().top + 30) + 'px';
+            particle.style.fontSize = (Math.random() * 20 + 16) + 'px';
+            particle.style.pointerEvents = 'none';
+            particle.style.zIndex = '9999';
+            particle.style.transition = 'all 0.8s ease-out';
+            document.body.appendChild(particle);
+            const deltaX = (Math.random() - 0.5) * 200;
+            const deltaY = (Math.random() - 0.8) * 180 - 80;
+            setTimeout(() => {
+                particle.style.transform = `translate(${deltaX}px, ${deltaY}px) rotate(${Math.random() * 360}deg)`;
+                particle.style.opacity = '0';
+            }, 10);
+            setTimeout(() => particle.remove(), 900);
+        }
+        // Mensaje oculto con Poema adicional
+        msgDiv.innerHTML = "🎁✨ ¡Sorpresa! Que la vida te regale flores cada día. ¡Feliz cumpleaños! ✨🎁";
+        msgDiv.style.fontSize = "1rem";
+        msgDiv.style.background = "#ffefe3";
+        msgDiv.style.padding = "6px 12px";
+        msgDiv.style.borderRadius = "40px";
+        msgDiv.style.transition = "0.2s";
+        // También modificar el gift un poco
+        giftDiv.style.background = "#ffb88c";
+        giftDiv.style.transform = "scale(0.95)";
+        setTimeout(() => {
+            if(giftDiv) giftDiv.style.transform = "";
+        }, 200);
+        // opcional: canción mental (simulacion)
+        setTimeout(() => {
+            if(msgDiv) msgDiv.innerHTML = "💖🎂 ¡Que tus deseos se hagan realidad! 🎂💖";
+        }, 3000);
+    }
+
+    giftDiv.addEventListener('click', showSurprise);
+
+    // Botón de estrellas y chispas extra con confeti dinámico
+    const sparkBtn = document.getElementById('extraSparkleBtn');
+    sparkBtn.addEventListener('click', () => {
+        // lanzar estrellitas, confeti colorido y efecto cascada
+        for (let i = 0; i < 40; i++) {
+            const star = document.createElement('div');
+            const icons = ['⭐', '🌟', '✨', '💫', '🎇', '🎆', '🌸', '🍰'];
+            star.textContent = icons[Math.floor(Math.random() * icons.length)];
+            star.style.position = 'fixed';
+            star.style.left = Math.random() * window.innerWidth + 'px';
+            star.style.top = '-20px';
+            star.style.fontSize = (Math.random() * 24 + 14) + 'px';
+            star.style.opacity = '0.9';
+            star.style.pointerEvents = 'none';
+            star.style.zIndex = '9999';
+            star.style.transition = 'transform 1s linear, opacity 1s';
+            document.body.appendChild(star);
+            const moveX = (Math.random() - 0.5) * 120;
+            setTimeout(() => {
+                star.style.transform = `translate(${moveX}px, ${window.innerHeight + 50}px) rotate(${Math.random() * 360}deg)`;
+                star.style.opacity = '0';
+            }, 20);
+            setTimeout(() => star.remove(), 1100);
+        }
+        // un mini efecto de texto
+        const oldText = sparkBtn.innerText;
+        sparkBtn.innerText = "🌟✨ ¡Magia! ✨🌟";
+        sparkBtn.style.background = "#ffb282";
+        sparkBtn.style.color = "#4f1f0c";
+        setTimeout(() => {
+            sparkBtn.innerText = oldText;
+            sparkBtn.style.background = "none";
+            sparkBtn.style.color = "#b1472f";
+        }, 1000);
+    });
+
+    // Añadir animaciones suaves de escritura gradual en el mensaje (opcional: no necesario pero sutil)
+    // hacer que algunos corazones latan más dinámicos
+    const hearts = document.querySelectorAll('.floating-heart');
+    hearts.forEach(heart => {
+        heart.style.animationDuration = '0.9s';
+    });
+
+    // Inicializar decoraciones de fondo y también adjustment responsive
+    createFloatingDecorations();
+
+    // Agregar tooltip sutil en el regalo
+    giftDiv.setAttribute('title', '¡Toca para abrir regalo sorpresa!');
+
+    // Generar unos confetis de bienvenida al cargar la página suave
+    window.addEventListener('load', () => {
+        for (let i = 0; i < 20; i++) {
+            setTimeout(() => {
+                const conf = document.createElement('div');
+                conf.textContent = '✨';
+                conf.style.position = 'fixed';
+                conf.style.left = Math.random() * 100 + '%';
+                conf.style.top = '0%';
+                conf.style.fontSize = '1.4rem';
+                conf.style.opacity = '0.7';
+                conf.style.pointerEvents = 'none';
+                conf.style.zIndex = '10000';
+                conf.style.transition = 'all 1.2s ease';
+                document.body.appendChild(conf);
+                setTimeout(() => {
+                    conf.style.transform = 'translateY(100vh) rotate(20deg)';
+                    conf.style.opacity = '0';
+                }, 20);
+                setTimeout(() => conf.remove(), 1300);
+            }, i * 70);
+        }
+        // escena inicial
+        const welcomeMsg = document.createElement('div');
+        welcomeMsg.innerText = '🎈🎂 ¡Celebremos juntos! 🎂🎈';
+        welcomeMsg.style.position = 'fixed';
+        welcomeMsg.style.bottom = '20px';
+        welcomeMsg.style.left = '50%';
+        welcomeMsg.style.transform = 'translateX(-50%)';
+        welcomeMsg.style.background = 'rgba(255,225,200,0.9)';
+        welcomeMsg.style.padding = '8px 22px';
+        welcomeMsg.style.borderRadius = '60px';
+        welcomeMsg.style.fontWeight = 'bold';
+        welcomeMsg.style.color = '#b5472b';
+        welcomeMsg.style.fontFamily = 'Quicksand, sans-serif';
+        welcomeMsg.style.zIndex = '1000';
+        welcomeMsg.style.backdropFilter = 'blur(6px)';
+        welcomeMsg.style.fontSize = '0.9rem';
+        welcomeMsg.style.boxShadow = '0 6px 14px rgba(0,0,0,0.1)';
+        welcomeMsg.style.animation = 'fadeOutUp 3s forwards';
+        document.body.appendChild(welcomeMsg);
+        const styleSheet = document.createElement('style');
+        styleSheet.textContent = `@keyframes fadeOutUp { 0% { opacity: 1; transform: translateX(-50%) translateY(0); } 70% { opacity: 0.8; } 100% { opacity: 0; transform: translateX(-50%) translateY(-40px); visibility: hidden; } }`;
+        document.head.appendChild(styleSheet);
+        setTimeout(() => welcomeMsg.remove(), 3000);
+    });
+</script>
+</body>
+</html>
