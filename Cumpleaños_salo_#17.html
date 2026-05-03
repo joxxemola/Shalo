@@ -1,537 +1,538 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>HBD My Shalo✨</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            min-height: 100vh;
-            background: linear-gradient(145deg, #ffe4f0 0%, #ffcfdf 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            font-family: 'Segoe UI', 'Poppins', system-ui, -apple-system, 'Roboto', sans-serif;
-            position: relative;
-            animation: bgPulse 12s infinite ease-in-out;
-        }
-
-        /* Fondo con respiración suave en tonos rosas */
-        @keyframes bgPulse {
-            0% { background: linear-gradient(145deg, #ffe4f0 0%, #ffd5e5 100%); }
-            50% { background: linear-gradient(145deg, #ffe9f4 0%, #ffcddf 100%); }
-            100% { background: linear-gradient(145deg, #ffe4f0 0%, #ffd5e5 100%); }
-        }
-
-        /* Partículas flotantes decorativas: estrellas, corazones rosas y flores */
-        .floating-deco {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 0;
-            overflow: hidden;
-        }
-
-        .floating-deco i {
-            position: absolute;
-            font-size: 1.8rem;
-            opacity: 0.5;
-            animation: floatAround 14s infinite linear;
-            user-select: none;
-        }
-
-        @keyframes floatAround {
-            0% {
-                transform: translateY(100vh) rotate(0deg);
-                opacity: 0;
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+        <title>HBD My Shalo✨</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
             }
-            10% { opacity: 0.6; }
-            90% { opacity: 0.6; }
-            100% {
-                transform: translateY(-20vh) rotate(360deg);
-                opacity: 0;
+
+            body {
+                min-height: 100vh;
+                background: linear-gradient(145deg, #ffe4f0 0%, #ffcfdf 100%);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 20px;
+                font-family: 'Segoe UI', 'Poppins', system-ui, -apple-system, 'Roboto', sans-serif;
+                position: relative;
+                animation: bgPulse 12s infinite ease-in-out;
             }
-        }
 
-        /* Tarjeta principal con animación de entrada y femenina */
-        .card {
-            max-width: 620px;
-            width: 100%;
-            background: rgba(255, 250, 252, 0.98);
-            backdrop-filter: blur(2px);
-            border-radius: 56px;
-            box-shadow: 0 30px 45px -20px rgba(200, 90, 130, 0.35), 0 8px 20px rgba(0, 0, 0, 0.05);
-            overflow: hidden;
-            transition: transform 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1), box-shadow 0.3s ease;
-            position: relative;
-            z-index: 2;
-            animation: cardGlow 1.2s ease-out, cardEntrance 0.7s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-        }
-
-        .card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 40px 52px -18px rgba(210, 80, 120, 0.4);
-        }
-
-        @keyframes cardEntrance {
-            0% {
-                opacity: 0;
-                transform: scale(0.92) translateY(30px);
+            /* Fondo con respiración suave en tonos rosas */
+            @keyframes bgPulse {
+                0% { background: linear-gradient(145deg, #ffe4f0 0%, #ffd5e5 100%); }
+                50% { background: linear-gradient(145deg, #ffe9f4 0%, #ffcddf 100%); }
+                100% { background: linear-gradient(145deg, #ffe4f0 0%, #ffd5e5 100%); }
             }
-            100% {
-                opacity: 1;
-                transform: scale(1) translateY(0);
+
+            /* Partículas flotantes decorativas: estrellas, corazones rosas y flores */
+            .floating-deco {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                pointer-events: none;
+                z-index: 0;
+                overflow: hidden;
             }
-        }
 
-        @keyframes cardGlow {
-            0% { box-shadow: 0 0 0 rgba(255, 140, 170, 0); }
-            30% { box-shadow: 0 0 0 12px rgba(255, 160, 180, 0.25); }
-            100% { box-shadow: 0 30px 45px -20px rgba(200, 90, 130, 0.35); }
-        }
-
-        /* Encabezado rosa pastel */
-        .header {
-            background: linear-gradient(135deg, #ffb6c7, #ff9eb5);
-            padding: 32px 24px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .header::before {
-            content: "🌸🎀";
-            position: absolute;
-            font-size: 4rem;
-            bottom: -15px;
-            right: -15px;
-            opacity: 0.2;
-            pointer-events: none;
-            animation: sway 6s infinite alternate;
-        }
-
-        @keyframes sway {
-            0% { transform: translateX(0px) rotate(-5deg); }
-            100% { transform: translateX(15px) rotate(5deg); }
-        }
-
-        .header h1 {
-            font-size: 2.7rem;
-            color: #6b2a44;
-            margin-bottom: 8px;
-            text-shadow: 3px 3px 0 rgba(255, 215, 225, 0.8);
-            letter-spacing: -0.5px;
-            animation: titleGlow 2s infinite alternate;
-        }
-
-        @keyframes titleGlow {
-            0% { text-shadow: 2px 2px 0 #ffd0dc; }
-            100% { text-shadow: 5px 5px 12px rgba(230, 100, 130, 0.4); }
-        }
-
-        .header p {
-            font-size: 1.4rem;
-            color: #882e54;
-            font-weight: 600;
-            background: rgba(255, 240, 245, 0.7);
-            display: inline-block;
-            padding: 5px 18px;
-            border-radius: 80px;
-            backdrop-filter: blur(2px);
-        }
-
-        /* Cuerpo principal */
-        .body {
-            padding: 32px 30px 30px;
-            background: #fffbfd;
-        }
-
-        .message {
-            font-size: 1.05rem;
-            line-height: 1.7;
-            color: #552c3f;
-            text-align: center;
-            margin-bottom: 28px;
-            background: #fff5f8;
-            border-radius: 44px;
-            padding: 15px 15px 8px 15px;
-            transition: all 0.3s;
-            border: 1px solid #ffe0e8;
-        }
-
-        .message p {
-            margin-bottom: 16px;
-            animation: messageFade 0.5s ease backwards;
-        }
-
-        .message p:nth-child(1) { animation-delay: 0.1s; }
-        .message p:nth-child(2) { animation-delay: 0.2s; }
-        .message p:nth-child(3) { animation-delay: 0.3s; }
-
-        @keyframes messageFade {
-            from {
-                opacity: 0;
-                transform: translateY(8px);
+            .floating-deco i {
+                position: absolute;
+                font-size: 1.8rem;
+                opacity: 0.5;
+                animation: floatAround 14s infinite linear;
+                user-select: none;
             }
-            to {
-                opacity: 1;
-                transform: translateY(0);
+
+            @keyframes floatAround {
+                0% {
+                    transform: translateY(100vh) rotate(0deg);
+                    opacity: 0;
+                }
+                10% { opacity: 0.6; }
+                90% { opacity: 0.6; }
+                100% {
+                    transform: translateY(-20vh) rotate(360deg);
+                    opacity: 0;
+                }
             }
-        }
 
-        .signature {
-            text-align: right;
-            font-style: italic;
-            color: #c25b82;
-            border-top: 2px dashed #ffc0d0;
-            padding-top: 16px;
-            margin-top: 12px;
-            font-weight: 500;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="%23f29bc1"><path d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5 2,5.41 4.42,3 7.5,3c1.74,0 3.41.81 4.5,2.08C13.09,3.81 14.76,3 16.5,3 19.58,3 22,5.41 22,8.5c0,3.77-3.4,6.86-8.55,11.54L12,21.35Z"/></svg>') no-repeat left center;
-            background-size: 18px;
-            padding-left: 26px;
-        }
-
-        /* Botón rosa pastel femenino */
-        .button-container {
-            text-align: center;
-            margin: 30px 0 12px;
-            position: relative;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            background: linear-gradient(135deg, #ff99bb, #ff80a5);
-            border: none;
-            color: white;
-            padding: 14px 36px;
-            border-radius: 60px;
-            font-size: 1.2rem;
-            font-weight: bold;
-            cursor: pointer;
-            text-decoration: none;
-            font-family: inherit;
-            transition: all 0.25s ease;
-            box-shadow: 0 8px 18px rgba(235, 100, 140, 0.45);
-            letter-spacing: 0.5px;
-            backdrop-filter: blur(2px);
-            animation: btnPulse 2.4s infinite ease;
-        }
-
-        @keyframes btnPulse {
-            0% { box-shadow: 0 4px 14px rgba(240, 100, 140, 0.5); transform: scale(1); }
-            70% { box-shadow: 0 12px 28px rgba(245, 90, 130, 0.7); transform: scale(1.02); }
-            100% { box-shadow: 0 4px 14px rgba(240, 100, 140, 0.5); transform: scale(1); }
-        }
-
-        .btn:hover {
-            background: linear-gradient(135deg, #ff88ae, #ff6f97);
-            transform: scale(1.05) translateY(-3px);
-            box-shadow: 0 20px 28px -5px rgba(235, 80, 120, 0.6);
-        }
-
-        .btn:active {
-            transform: scale(0.97);
-        }
-
-        .btn span {
-            display: inline-block;
-            animation: starSpin 1.6s infinite alternate;
-        }
-
-        @keyframes starSpin {
-            0% { transform: rotate(0deg) scale(1); }
-            100% { transform: rotate(15deg) scale(1.2); }
-        }
-
-        .subtle-hint {
-            text-align: center;
-            font-size: 0.75rem;
-            color: #d47a9e;
-            margin-top: 10px;
-            font-weight: 500;
-            background: #ffeef4;
-            display: inline-block;
-            width: auto;
-            padding: 5px 24px;
-            border-radius: 40px;
-            backdrop-filter: blur(2px);
-            animation: hintGlow 2s infinite;
-        }
-
-        @keyframes hintGlow {
-            0% { opacity: 0.7; background: #ffeef4; }
-            100% { opacity: 1; background: #ffe2ec; }
-        }
-
-        .footer {
-            background: #ffebf0;
-            padding: 18px 24px;
-            text-align: center;
-            font-size: 0.85rem;
-            color: #c55a83;
-            border-top: 1px solid #ffd4e0;
-            font-weight: 500;
-            letter-spacing: 0.3px;
-        }
-
-        .footer span {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .footer span::before, .footer span::after {
-            content: "🌸";
-            animation: bounceSoft 1.2s infinite;
-            display: inline-block;
-        }
-
-        .footer span::after {
-            content: "💗";
-            animation-delay: 0.4s;
-        }
-
-        @keyframes bounceSoft {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-3px); }
-        }
-
-        /* Responsive */
-        @media (max-width: 550px) {
-            .card { border-radius: 36px; }
-            .header h1 { font-size: 2rem; }
-            .header p { font-size: 1rem; }
-            .btn { padding: 11px 28px; font-size: 1rem; gap: 8px; }
-            .body { padding: 24px 18px; }
-        }
-
-        /* Estrellas al hacer clic (efecto visual sin romper redirección) */
-        .star-burst {
-            position: fixed;
-            pointer-events: none;
-            z-index: 9999;
-            font-size: 1.6rem;
-            animation: burstFly 0.7s ease-out forwards;
-        }
-
-        @keyframes burstFly {
-            0% {
-                opacity: 1;
-                transform: scale(0.2) translate(0, 0);
+            /* Tarjeta principal con animación de entrada y femenina */
+            .card {
+                max-width: 620px;
+                width: 100%;
+                background: rgba(255, 250, 252, 0.98);
+                backdrop-filter: blur(2px);
+                border-radius: 56px;
+                box-shadow: 0 30px 45px -20px rgba(200, 90, 130, 0.35), 0 8px 20px rgba(0, 0, 0, 0.05);
+                overflow: hidden;
+                transition: transform 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1), box-shadow 0.3s ease;
+                position: relative;
+                z-index: 2;
+                animation: cardGlow 1.2s ease-out, cardEntrance 0.7s cubic-bezier(0.2, 0.9, 0.4, 1.1);
             }
-            100% {
-                opacity: 0;
-                transform: scale(1.2) translate(var(--tx, 40px), var(--ty, -80px));
+
+            .card:hover {
+                transform: translateY(-8px);
+                box-shadow: 0 40px 52px -18px rgba(210, 80, 120, 0.4);
             }
-        }
 
-        /* Efecto adicional para corazones en el signature */
-        @keyframes softHeartBeat {
-            0% { transform: scale(1); }
-            100% { transform: scale(1.02); }
-        }
-    </style>
-</head>
-<body>
+            @keyframes cardEntrance {
+                0% {
+                    opacity: 0;
+                    transform: scale(0.92) translateY(30px);
+                }
+                100% {
+                    opacity: 1;
+                    transform: scale(1) translateY(0);
+                }
+            }
 
-<div class="floating-deco" id="floatingDeco"></div>
+            @keyframes cardGlow {
+                0% { box-shadow: 0 0 0 rgba(255, 140, 170, 0); }
+                30% { box-shadow: 0 0 0 12px rgba(255, 160, 180, 0.25); }
+                100% { box-shadow: 0 30px 45px -20px rgba(200, 90, 130, 0.35); }
+            }
 
-<div class="card">
-    <div class="header">
-        <h1>🎀 Feliz Cumpleaños #17 🎀</h1>
-        <p>🌸 Para My Tomate Negro 🌸</p>
-    </div>
+            /* Encabezado rosa pastel */
+            .header {
+                background: linear-gradient(135deg, #ffb6c7, #ff9eb5);
+                padding: 32px 24px;
+                text-align: center;
+                position: relative;
+                overflow: hidden;
+            }
 
-    <div class="body">
-        <div class="message">
-            <p>Hoy celebro el día en que llegó al mundo mi bebé chiquitita 💖 Gracias por esa sonrisa tan linda, mi niña, y por la forma en que siempre logras hacerme sentir en casa.</p>
-            <p>Desde que estás en mi vida, todo es mejor. Los días son más bonitos, las cosas simples tienen más sentido y mi corazón se siente tranquilo cuando estoy contigo. Gracias por cada momento, por cada palabra y por cada abrazo que me das.</p>
-            <p>Gracias por ser esa mujer fuerte, valiente y con un corazón tan grande. Gracias por apoyarme en todo, incluso cuando las cosas no son fáciles. Me haces sentir el mejor hombre del mundo por tenerte a mi lado, y me llena de orgullo la mujer en la que te estás convirtiendo cada día.</p>
-            <p>Quiero que sepas que siempre voy a estar para ti, en los días buenos y en los no tan buenos, apoyándote, cuidándote y dándote todo mi amor.</p>
-            <p>Deseo que este nuevo año de vida te regale muchos sueños cumplidos, muchas alegrías y momentos que te hagan sonreír mucho, así como tú me haces sonreír a mí todos los días.</p>
-            <p>Gracias por llenar mi vida de luz, de sonrisas y de amor del bueno. Eres mi lugar favorito en este mundo, mi calma, mi alegría y mi sueño hecho realidad.</p>
-            <p>Feliz cumpleaños, mi amor 🎂✨</p>
-            <div class="signature">
-                Con muchísimo cariño,<br>
-                Tu Spider-Man 💕
+            .header::before {
+                content: "🌸🎀";
+                position: absolute;
+                font-size: 4rem;
+                bottom: -15px;
+                right: -15px;
+                opacity: 0.2;
+                pointer-events: none;
+                animation: sway 6s infinite alternate;
+            }
+
+            @keyframes sway {
+                0% { transform: translateX(0px) rotate(-5deg); }
+                100% { transform: translateX(15px) rotate(5deg); }
+            }
+
+            .header h1 {
+                font-size: 2.7rem;
+                color: #6b2a44;
+                margin-bottom: 8px;
+                text-shadow: 3px 3px 0 rgba(255, 215, 225, 0.8);
+                letter-spacing: -0.5px;
+                animation: titleGlow 2s infinite alternate;
+            }
+
+            @keyframes titleGlow {
+                0% { text-shadow: 2px 2px 0 #ffd0dc; }
+                100% { text-shadow: 5px 5px 12px rgba(230, 100, 130, 0.4); }
+            }
+
+            .header p {
+                font-size: 1.4rem;
+                color: #882e54;
+                font-weight: 600;
+                background: rgba(255, 240, 245, 0.7);
+                display: inline-block;
+                padding: 5px 18px;
+                border-radius: 80px;
+                backdrop-filter: blur(2px);
+            }
+
+            /* Cuerpo principal */
+            .body {
+                padding: 32px 30px 30px;
+                background: #fffbfd;
+            }
+
+            .message {
+                font-size: 1.05rem;
+                line-height: 1.7;
+                color: #552c3f;
+                text-align: center;
+                margin-bottom: 28px;
+                background: #fff5f8;
+                border-radius: 44px;
+                padding: 15px 15px 8px 15px;
+                transition: all 0.3s;
+                border: 1px solid #ffe0e8;
+            }
+
+            .message p {
+                margin-bottom: 16px;
+                animation: messageFade 0.5s ease backwards;
+            }
+
+            .message p:nth-child(1) { animation-delay: 0.1s; }
+            .message p:nth-child(2) { animation-delay: 0.2s; }
+            .message p:nth-child(3) { animation-delay: 0.3s; }
+
+            @keyframes messageFade {
+                from {
+                    opacity: 0;
+                    transform: translateY(8px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            .signature {
+                text-align: right;
+                font-style: italic;
+                color: #c25b82;
+                border-top: 2px dashed #ffc0d0;
+                padding-top: 16px;
+                margin-top: 12px;
+                font-weight: 500;
+                background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="%23f29bc1"><path d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5 2,5.41 4.42,3 7.5,3c1.74,0 3.41.81 4.5,2.08C13.09,3.81 14.76,3 16.5,3 19.58,3 22,5.41 22,8.5c0,3.77-3.4,6.86-8.55,11.54L12,21.35Z"/></svg>') no-repeat left center;
+                background-size: 18px;
+                padding-left: 26px;
+            }
+
+            /* Botón rosa pastel femenino */
+            .button-container {
+                text-align: center;
+                margin: 30px 0 12px;
+                position: relative;
+            }
+
+            .btn {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                gap: 12px;
+                background: linear-gradient(135deg, #ff99bb, #ff80a5);
+                border: none;
+                color: white;
+                padding: 14px 36px;
+                border-radius: 60px;
+                font-size: 1.2rem;
+                font-weight: bold;
+                cursor: pointer;
+                text-decoration: none;
+                font-family: inherit;
+                transition: all 0.25s ease;
+                box-shadow: 0 8px 18px rgba(235, 100, 140, 0.45);
+                letter-spacing: 0.5px;
+                backdrop-filter: blur(2px);
+                animation: btnPulse 2.4s infinite ease;
+            }
+
+            @keyframes btnPulse {
+                0% { box-shadow: 0 4px 14px rgba(240, 100, 140, 0.5); transform: scale(1); }
+                70% { box-shadow: 0 12px 28px rgba(245, 90, 130, 0.7); transform: scale(1.02); }
+                100% { box-shadow: 0 4px 14px rgba(240, 100, 140, 0.5); transform: scale(1); }
+            }
+
+            .btn:hover {
+                background: linear-gradient(135deg, #ff88ae, #ff6f97);
+                transform: scale(1.05) translateY(-3px);
+                box-shadow: 0 20px 28px -5px rgba(235, 80, 120, 0.6);
+            }
+
+            .btn:active {
+                transform: scale(0.97);
+            }
+
+            .btn span {
+                display: inline-block;
+                animation: starSpin 1.6s infinite alternate;
+            }
+
+            @keyframes starSpin {
+                0% { transform: rotate(0deg) scale(1); }
+                100% { transform: rotate(15deg) scale(1.2); }
+            }
+
+            .subtle-hint {
+                text-align: center;
+                font-size: 0.75rem;
+                color: #d47a9e;
+                margin-top: 10px;
+                font-weight: 500;
+                background: #ffeef4;
+                display: inline-block;
+                width: auto;
+                padding: 5px 24px;
+                border-radius: 40px;
+                backdrop-filter: blur(2px);
+                animation: hintGlow 2s infinite;
+            }
+
+            @keyframes hintGlow {
+                0% { opacity: 0.7; background: #ffeef4; }
+                100% { opacity: 1; background: #ffe2ec; }
+            }
+
+            .footer {
+                background: #ffebf0;
+                padding: 18px 24px;
+                text-align: center;
+                font-size: 0.85rem;
+                color: #c55a83;
+                border-top: 1px solid #ffd4e0;
+                font-weight: 500;
+                letter-spacing: 0.3px;
+            }
+
+            .footer span {
+                display: inline-flex;
+                align-items: center;
+                gap: 10px;
+            }
+
+            .footer span::before, .footer span::after {
+                content: "🌸";
+                animation: bounceSoft 1.2s infinite;
+                display: inline-block;
+            }
+
+            .footer span::after {
+                content: "💗";
+                animation-delay: 0.4s;
+            }
+
+            @keyframes bounceSoft {
+                0%, 100% { transform: translateY(0px); }
+                50% { transform: translateY(-3px); }
+            }
+
+            /* Responsive */
+            @media (max-width: 550px) {
+                .card { border-radius: 36px; }
+                .header h1 { font-size: 2rem; }
+                .header p { font-size: 1rem; }
+                .btn { padding: 11px 28px; font-size: 1rem; gap: 8px; }
+                .body { padding: 24px 18px; }
+            }
+
+            /* Estrellas al hacer clic (efecto visual sin romper redirección) */
+            .star-burst {
+                position: fixed;
+                pointer-events: none;
+                z-index: 9999;
+                font-size: 1.6rem;
+                animation: burstFly 0.7s ease-out forwards;
+            }
+
+            @keyframes burstFly {
+                0% {
+                    opacity: 1;
+                    transform: scale(0.2) translate(0, 0);
+                }
+                100% {
+                    opacity: 0;
+                    transform: scale(1.2) translate(var(--tx, 40px), var(--ty, -80px));
+                }
+            }
+
+            /* Efecto adicional para corazones en el signature */
+            @keyframes softHeartBeat {
+                0% { transform: scale(1); }
+                100% { transform: scale(1.02); }
+            }
+        </style>
+    </head>
+
+    <body>
+
+        <div class="floating-deco" id="floatingDeco"></div>
+
+        <div class="card">
+            <div class="header">
+                <h1>🎀 Feliz Cumpleaños #17 🎀</h1>
+                <p>🌸 Para My Tomate Negro 🌸</p>
+            </div>
+
+            <div class="body">
+                <div class="message">
+                    <p>Hoy celebro el día en que llegó al mundo mi bebé chiquitita 💖 Gracias por esa sonrisa tan linda, mi niña, y por la forma en que siempre logras hacerme sentir en casa.</p>
+                    <p>Desde que estás en mi vida, todo es mejor. Los días son más bonitos, las cosas simples tienen más sentido y mi corazón se siente tranquilo cuando estoy contigo. Gracias por cada momento, por cada palabra y por cada abrazo que me das.</p>
+                    <p>Gracias por ser esa mujer fuerte, valiente y con un corazón tan grande. Gracias por apoyarme en todo, incluso cuando las cosas no son fáciles. Me haces sentir el mejor hombre del mundo por tenerte a mi lado, y me llena de orgullo la mujer en la que te estás convirtiendo cada día.</p>
+                    <p>Quiero que sepas que siempre voy a estar para ti, en los días buenos y en los no tan buenos, apoyándote, cuidándote y dándote todo mi amor.</p>
+                    <p>Deseo que este nuevo año de vida te regale muchos sueños cumplidos, muchas alegrías y momentos que te hagan sonreír mucho, así como tú me haces sonreír a mí todos los días.</p>
+                    <p>Gracias por llenar mi vida de luz, de sonrisas y de amor del bueno. Eres mi lugar favorito en este mundo, mi calma, mi alegría y mi sueño hecho realidad.</p>
+                    <p>Feliz cumpleaños, mi amor 🎂✨</p>
+                    <div class="signature">
+                        Con muchísimo cariño,<br>
+                        Tu Spider-Man 💕
+                    </div>
+                </div>
+
+                <div class="button-container">
+                    <a href="https://www.google.com" target="_blank" class="btn" id="magicButton"> 
+                        <span>✨</span> Sorpresa, CLic Aqui <span>✨</span>
+                    </a>
+                </div>
+
+                <br>
+                <div class="message" style="text-align: right;">
+                    <p>“No contamos los años,</p>
+                    <p>sino las historias que vivimos</p>
+                    <p>y los momentos que nos hacen eternos.”</p>
+                    <p style="text-align: left;">-Emily Dickinson</p>
+
+                </div>
+            </div>
+
+            <div class="footer">
+                <span>🌸 Te amoooo con todo mi corazón. 🌸</span>
             </div>
         </div>
 
-        <div class="button-container">
-            <a href="https://www.google.com" target="_blank" class="btn" id="magicButton"> 
-                <span>✨</span> Sorpresa, CLic Aqui <span>✨</span>
-            </a>
-        </div>
+        <script>
+            (function() {
+                // 1. Generar elementos flotantes decorativos (estrellitas, corazones, flores, mariposas)
+                const floatingContainer = document.getElementById('floatingDeco');
+                // Símbolos femeninos y brillantes
+                const symbols = ['✨', '⭐', '💖', '🌸', '🎀', '💗', '🌷', '🦋', '💫', '🌺', '🎂', '💞', '🌸'];
+                
+                // Crear 42 elementos flotando con suavidad
+                for (let i = 0; i < 44; i++) {
+                    const el = document.createElement('i');
+                    const randomSymbol = symbols[Math.floor(Math.random() * symbols.length)];
+                    el.textContent = randomSymbol;
+                    const size = Math.floor(Math.random() * 24 + 16); // 16px a 40px
+                    el.style.fontSize = size + 'px';
+                    el.style.left = Math.random() * 100 + '%';
+                    const duration = Math.random() * 14 + 8;
+                    el.style.animationDuration = duration + 's';
+                    el.style.animationDelay = Math.random() * 12 + 's';
+                    el.style.opacity = Math.random() * 0.55 + 0.25;
+                    el.style.position = 'absolute';
+                    el.style.bottom = '-30px';
+                    floatingContainer.appendChild(el);
+                }
 
-        <br>
-        <div class="message" style="text-align: right;">
-            <p>“No contamos los años,</p>
-            <p>sino las historias que vivimos</p>
-            <p>y los momentos que nos hacen eternos.”</p>
-            <p style="text-align: left;">-Emily Dickinson</p>
+                // 2. efecto de ráfaga de estrellas en clic (sin interferir con el enlace)
+                const btn = document.getElementById('magicButton');
+                
+                function createStarBurst(x, y) {
+                    for (let i = 0; i < 14; i++) {
+                        const star = document.createElement('div');
+                        star.classList.add('star-burst');
+                        const icons = ['✨', '⭐', '🌟', '💫', '💖', '🌸', '🎀'];
+                        star.textContent = icons[Math.floor(Math.random() * icons.length)];
+                        star.style.left = (x + (Math.random() - 0.5) * 80) + 'px';
+                        star.style.top = (y + (Math.random() - 0.5) * 70) + 'px';
+                        const angleX = (Math.random() - 0.5) * 150;
+                        const angleY = (Math.random() - 0.5) * 130 - 50;
+                        star.style.setProperty('--tx', angleX + 'px');
+                        star.style.setProperty('--ty', angleY + 'px');
+                        star.style.fontSize = (Math.random() * 20 + 12) + 'px';
+                        document.body.appendChild(star);
+                        setTimeout(() => { star.remove(); }, 700);
+                    }
+                }
 
-        </div>
-    </div>
-
-    <div class="footer">
-        <span>🌸 Te amoooo con todo mi corazón. 🌸</span>
-    </div>
-</div>
-
-<script>
-    (function() {
-        // 1. Generar elementos flotantes decorativos (estrellitas, corazones, flores, mariposas)
-        const floatingContainer = document.getElementById('floatingDeco');
-        // Símbolos femeninos y brillantes
-        const symbols = ['✨', '⭐', '💖', '🌸', '🎀', '💗', '🌷', '🦋', '💫', '🌺', '🎂', '💞', '🌸'];
-        
-        // Crear 42 elementos flotando con suavidad
-        for (let i = 0; i < 44; i++) {
-            const el = document.createElement('i');
-            const randomSymbol = symbols[Math.floor(Math.random() * symbols.length)];
-            el.textContent = randomSymbol;
-            const size = Math.floor(Math.random() * 24 + 16); // 16px a 40px
-            el.style.fontSize = size + 'px';
-            el.style.left = Math.random() * 100 + '%';
-            const duration = Math.random() * 14 + 8;
-            el.style.animationDuration = duration + 's';
-            el.style.animationDelay = Math.random() * 12 + 's';
-            el.style.opacity = Math.random() * 0.55 + 0.25;
-            el.style.position = 'absolute';
-            el.style.bottom = '-30px';
-            floatingContainer.appendChild(el);
-        }
-
-        // 2. efecto de ráfaga de estrellas en clic (sin interferir con el enlace)
-        const btn = document.getElementById('magicButton');
-        
-        function createStarBurst(x, y) {
-            for (let i = 0; i < 14; i++) {
-                const star = document.createElement('div');
-                star.classList.add('star-burst');
-                const icons = ['✨', '⭐', '🌟', '💫', '💖', '🌸', '🎀'];
-                star.textContent = icons[Math.floor(Math.random() * icons.length)];
-                star.style.left = (x + (Math.random() - 0.5) * 80) + 'px';
-                star.style.top = (y + (Math.random() - 0.5) * 70) + 'px';
-                const angleX = (Math.random() - 0.5) * 150;
-                const angleY = (Math.random() - 0.5) * 130 - 50;
-                star.style.setProperty('--tx', angleX + 'px');
-                star.style.setProperty('--ty', angleY + 'px');
-                star.style.fontSize = (Math.random() * 20 + 12) + 'px';
-                document.body.appendChild(star);
-                setTimeout(() => { star.remove(); }, 700);
-            }
-        }
-
-        // Mismo comportamiento: clic en botón lanza estrellas y luego redirige normalmente (target="_blank")
-        btn.addEventListener('click', function(event) {
-            const rect = btn.getBoundingClientRect();
-            const centerX = rect.left + rect.width / 2;
-            const centerY = rect.top + rect.height / 2;
-            createStarBurst(centerX, centerY);
-            
-            // Pequeño flash de fondo rosa tenue para celebrar (sin romper navegación)
-            const fakeFlash = document.createElement('div');
-            fakeFlash.style.position = 'fixed';
-            fakeFlash.style.top = '0';
-            fakeFlash.style.left = '0';
-            fakeFlash.style.width = '100%';
-            fakeFlash.style.height = '100%';
-            fakeFlash.style.backgroundColor = 'rgba(255, 190, 210, 0.35)';
-            fakeFlash.style.pointerEvents = 'none';
-            fakeFlash.style.zIndex = '9998';
-            fakeFlash.style.animation = 'flashFade 0.3s ease-out forwards';
-            document.body.appendChild(fakeFlash);
-            setTimeout(() => { fakeFlash.remove(); }, 300);
-            
-            if (!document.querySelector('#dynamicFlashStyle')) {
-                const style = document.createElement('style');
-                style.id = 'dynamicFlashStyle';
-                style.textContent = `@keyframes flashFade { 0% { opacity: 0.6; } 100% { opacity: 0; visibility: hidden; } }`;
-                document.head.appendChild(style);
-            }
-        });
-        
-        // Efecto hover sobre la tarjeta desde el botón (sutil)
-        const card = document.querySelector('.card');
-        btn.addEventListener('mouseenter', () => {
-            card.style.transition = 'box-shadow 0.2s';
-            card.style.boxShadow = '0 35px 55px -15px rgba(210, 90, 130, 0.55)';
-        });
-        btn.addEventListener('mouseleave', () => {
-            card.style.boxShadow = '0 30px 45px -20px rgba(200, 90, 130, 0.35)';
-        });
-        
-        // 3. Intermitencia suave en la firma para un detalle coqueto
-        const signature = document.querySelector('.signature');
-        if (signature) {
-            setInterval(() => {
-                signature.style.transition = 'color 0.5s';
-                signature.style.color = '#da6f96';
-                setTimeout(() => { signature.style.color = '#c25b82'; }, 500);
-            }, 3200);
-        }
-        
-        // 4. Generar elementos adicionales flotantes cada cierto tiempo (más magia)
-        function addFloatingExtra() {
-            const extra = document.createElement('i');
-            const feminineDeco = ['🎀', '🌸', '💗', '🦋', '💖', '🌷', '🎂', '✨'];
-            extra.textContent = feminineDeco[Math.floor(Math.random() * feminineDeco.length)];
-            extra.style.position = 'absolute';
-            extra.style.left = Math.random() * 90 + '%';
-            extra.style.fontSize = (Math.random() * 30 + 22) + 'px';
-            extra.style.bottom = '-20px';
-            extra.style.opacity = '0.6';
-            extra.style.animation = 'floatAround 11s linear forwards';
-            extra.style.animationDuration = (Math.random() * 12 + 7) + 's';
-            extra.style.pointerEvents = 'none';
-            floatingContainer.appendChild(extra);
-            setTimeout(() => { extra.remove(); }, 14000);
-        }
-        setInterval(addFloatingExtra, 6200);
-        
-        // 5. Hacer el mensaje más interactivo: leve aumento al pasar mouse
-        const msgDiv = document.querySelector('.message');
-        if(msgDiv) {
-            msgDiv.addEventListener('mouseenter', () => {
-                msgDiv.style.transform = 'scale(1.01)';
-                msgDiv.style.backgroundColor = '#fff8fa';
-                msgDiv.style.transition = 'all 0.2s';
-            });
-            msgDiv.addEventListener('mouseleave', () => {
-                msgDiv.style.transform = 'scale(1)';
-                msgDiv.style.backgroundColor = '#fff5f8';
-            });
-        }
-        
-        // 6. Pequeño detalle: agregar un efecto de "brillo" a los textos del header
-        const headerTitle = document.querySelector('.header h1');
-        if(headerTitle) {
-            setInterval(() => {
-                headerTitle.style.textShadow = '4px 4px 12px rgba(230, 100, 130, 0.4)';
-                setTimeout(() => {
-                    headerTitle.style.textShadow = '3px 3px 0 rgba(255, 215, 225, 0.8)';
-                }, 600);
-            }, 2800);
-        }
-        
-        // Confirmación silenciosa: el botón funciona exactamente igual, con navegación externa.
-        console.log('🎀 Tarjeta rosa pastel lista — el botón conserva su enlace original a Google, animaciones agregadas con estilo femenino 🎀');
-    })();
-</script>
-</body>
+                // Mismo comportamiento: clic en botón lanza estrellas y luego redirige normalmente (target="_blank")
+                btn.addEventListener('click', function(event) {
+                    const rect = btn.getBoundingClientRect();
+                    const centerX = rect.left + rect.width / 2;
+                    const centerY = rect.top + rect.height / 2;
+                    createStarBurst(centerX, centerY);
+                    
+                    // Pequeño flash de fondo rosa tenue para celebrar (sin romper navegación)
+                    const fakeFlash = document.createElement('div');
+                    fakeFlash.style.position = 'fixed';
+                    fakeFlash.style.top = '0';
+                    fakeFlash.style.left = '0';
+                    fakeFlash.style.width = '100%';
+                    fakeFlash.style.height = '100%';
+                    fakeFlash.style.backgroundColor = 'rgba(255, 190, 210, 0.35)';
+                    fakeFlash.style.pointerEvents = 'none';
+                    fakeFlash.style.zIndex = '9998';
+                    fakeFlash.style.animation = 'flashFade 0.3s ease-out forwards';
+                    document.body.appendChild(fakeFlash);
+                    setTimeout(() => { fakeFlash.remove(); }, 300);
+                    
+                    if (!document.querySelector('#dynamicFlashStyle')) {
+                        const style = document.createElement('style');
+                        style.id = 'dynamicFlashStyle';
+                        style.textContent = `@keyframes flashFade { 0% { opacity: 0.6; } 100% { opacity: 0; visibility: hidden; } }`;
+                        document.head.appendChild(style);
+                    }
+                });
+                
+                // Efecto hover sobre la tarjeta desde el botón (sutil)
+                const card = document.querySelector('.card');
+                btn.addEventListener('mouseenter', () => {
+                    card.style.transition = 'box-shadow 0.2s';
+                    card.style.boxShadow = '0 35px 55px -15px rgba(210, 90, 130, 0.55)';
+                });
+                btn.addEventListener('mouseleave', () => {
+                    card.style.boxShadow = '0 30px 45px -20px rgba(200, 90, 130, 0.35)';
+                });
+                
+                // 3. Intermitencia suave en la firma para un detalle coqueto
+                const signature = document.querySelector('.signature');
+                if (signature) {
+                    setInterval(() => {
+                        signature.style.transition = 'color 0.5s';
+                        signature.style.color = '#da6f96';
+                        setTimeout(() => { signature.style.color = '#c25b82'; }, 500);
+                    }, 3200);
+                }
+                
+                // 4. Generar elementos adicionales flotantes cada cierto tiempo (más magia)
+                function addFloatingExtra() {
+                    const extra = document.createElement('i');
+                    const feminineDeco = ['🎀', '🌸', '💗', '🦋', '💖', '🌷', '🎂', '✨'];
+                    extra.textContent = feminineDeco[Math.floor(Math.random() * feminineDeco.length)];
+                    extra.style.position = 'absolute';
+                    extra.style.left = Math.random() * 90 + '%';
+                    extra.style.fontSize = (Math.random() * 30 + 22) + 'px';
+                    extra.style.bottom = '-20px';
+                    extra.style.opacity = '0.6';
+                    extra.style.animation = 'floatAround 11s linear forwards';
+                    extra.style.animationDuration = (Math.random() * 12 + 7) + 's';
+                    extra.style.pointerEvents = 'none';
+                    floatingContainer.appendChild(extra);
+                    setTimeout(() => { extra.remove(); }, 14000);
+                }
+                setInterval(addFloatingExtra, 6200);
+                
+                // 5. Hacer el mensaje más interactivo: leve aumento al pasar mouse
+                const msgDiv = document.querySelector('.message');
+                if(msgDiv) {
+                    msgDiv.addEventListener('mouseenter', () => {
+                        msgDiv.style.transform = 'scale(1.01)';
+                        msgDiv.style.backgroundColor = '#fff8fa';
+                        msgDiv.style.transition = 'all 0.2s';
+                    });
+                    msgDiv.addEventListener('mouseleave', () => {
+                        msgDiv.style.transform = 'scale(1)';
+                        msgDiv.style.backgroundColor = '#fff5f8';
+                    });
+                }
+                
+                // 6. Pequeño detalle: agregar un efecto de "brillo" a los textos del header
+                const headerTitle = document.querySelector('.header h1');
+                if(headerTitle) {
+                    setInterval(() => {
+                        headerTitle.style.textShadow = '4px 4px 12px rgba(230, 100, 130, 0.4)';
+                        setTimeout(() => {
+                            headerTitle.style.textShadow = '3px 3px 0 rgba(255, 215, 225, 0.8)';
+                        }, 600);
+                    }, 2800);
+                }
+                
+                // Confirmación silenciosa: el botón funciona exactamente igual, con navegación externa.
+                console.log('🎀 Tarjeta rosa pastel lista — el botón conserva su enlace original a Google, animaciones agregadas con estilo femenino 🎀');
+            })();
+        </script>
+    </body>
 </html>
