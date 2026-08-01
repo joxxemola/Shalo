@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>Feliz Día de la Novia</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,600&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,500&family=Montserrat:wght@500;600&display=swap" rel="stylesheet">
+    <style>
+      :root{
+        --ivory: #FBF3EA;
+        --ivory-dim: #F3E6D8;
+        --burgundy: #611E2B;
+        --burgundy-deep: #430F1A;
+        --rose: #D88C9A;
+        --blush: #F0C9C9;
+        --gold: #B98A2E;
+        --gold-soft: #D9B565;
+        --ink: #4A2430;
+      }
+
+      *{ box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+      html,body{
+        margin:0;
+        padding:0;
+        min-height:100vh;
+        background:
+          radial-gradient(circle at 20% 15%, #7A2B3A 0%, transparent 45%),
+          radial-gradient(circle at 85% 80%, #7A2B3A 0%, transparent 50%),
+          linear-gradient(160deg, var(--burgundy) 0%, var(--burgundy-deep) 100%);
+        font-family: 'Cormorant Garamond', serif;
+        color: var(--ink);
+        overflow-x:hidden;
+        touch-action: manipulation;
+      }
+
+      /* El checkbox invisible que controla toda la animación (sin JS) */
+      #openToggle{
+        position:absolute;
+        opacity:0;
+        pointer-events:none;
+      }
+
+      /* ---------- Pétalos ambientales (estáticos, solo CSS) ---------- */
+      .petals{
+        position:fixed;
+        inset:0;
+        pointer-events:none;
+        z-index:1;
+      }
+      .petal{
+        position:absolute;
+        top:-8%;
+        width:12px;
+        height:16px;
+        background: var(--rose);
+        border-radius: 50% 0 50% 50%;
+        opacity:0.75;
+        animation: fall linear infinite;
+      }
+      @keyframes fall{
+        0%   { transform: translateY(0) translateX(0) rotate(0deg); }
+        50%  { transform: translateY(55vh) translateX(20px) rotate(180deg); }
+        100% { transform: translateY(115vh) translateX(-15px) rotate(360deg); }
+      }
+      .petal:nth-child(1){ left:4%;  width:10px; height:14px; animation-duration:14s; animation-delay:0s;   }
+      .petal:nth-child(2){ left:12%; width:14px; height:18px; animation-duration:18s; animation-delay:2s;   }
+      .petal:nth-child(3){ left:20%; width:9px;  height:12px; animation-duration:12s; animation-delay:4s;   }
+      .petal:nth-child(4){ left:29%; width:16px; height:20px; animation-duration:20s; animation-delay:1s;   }
+      .petal:nth-child(5){ left:37%; width:11px; height:15px; animation-duration:15s; animation-delay:6s;   }
+      .petal:nth-child(6){ left:46%; width:13px; height:17px; animation-duration:17s; animation-delay:3s;   }
+      .petal:nth-child(7){ left:54%; width:10px; height:13px; animation-duration:13s; animation-delay:8s;   }
+      .petal:nth-child(8){ left:62%; width:15px; height:19px; animation-duration:19s; animation-delay:5s;   }
+      .petal:nth-child(9){ left:70%; width:9px;  height:12px; animation-duration:11s; animation-delay:7s;   }
+      .petal:nth-child(10){left:78%; width:14px; height:18px; animation-duration:16s; animation-delay:2.5s; }
+      .petal:nth-child(11){left:86%; width:11px; height:15px; animation-duration:14s; animation-delay:9s;   }
+      .petal:nth-child(12){left:93%; width:13px; height:17px; animation-duration:20s; animation-delay:4.5s; }
+      .petal:nth-child(13){left:58%; width:10px; height:13px; animation-duration:12s; animation-delay:10s;  }
+      .petal:nth-child(14){left:15%; width:12px; height:16px; animation-duration:17s; animation-delay:11s;  }
+
+      @media (prefers-reduced-motion: reduce){
+        .petal{ animation: none; opacity:0.4; }
+      }
+
+      /* ---------- Layout ---------- */
+      .stage{
+        position:relative;
+        z-index:2;
+        min-height:100vh;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        padding: 40px 20px;
+      }
+
+      .stage-inner{
+        display:grid;
+      }
+      .stage-inner > *{
+        grid-column:1;
+        grid-row:1;
+      }
+
+      /* ---------- Sobre (elemento distintivo) ---------- */
+      .envelope-wrap{
+        perspective: 1400px;
+        text-align:center;
+        opacity:1;
+        transform: scale(1);
+        pointer-events:auto;
+        transition: opacity 0.5s ease 0.9s, transform 0.5s ease 0.9s;
+      }
+
+      .envelope{
+        display:block;
+        position:relative;
+        width:340px;
+        max-width:86vw;
+        height:230px;
+        cursor:pointer;
+        touch-action: manipulation;
+        -webkit-user-select:none;
+        user-select:none;
+      }
+      .envelope:active .env-body{
+        transform: scale(0.97);
+      }
+
+      .envelope-hint{
+        text-align:center;
+        font-family:'Montserrat', sans-serif;
+        font-size:0.72rem;
+        letter-spacing:0.22em;
+        text-transform:uppercase;
+        color: var(--gold-soft);
+        margin-top:22px;
+        opacity:0.85;
+        animation: pulseHint 2.4s ease-in-out infinite;
+      }
+      @keyframes pulseHint{
+        0%,100%{ opacity:0.55; }
+        50%{ opacity:1; }
+      }
+
+      .open-btn{
+        display:inline-block;
+        margin: 18px auto 0;
+        padding: 14px 38px;
+        background: linear-gradient(160deg, var(--gold-soft), var(--gold));
+        color: var(--ivory);
+        border: none;
+        border-radius: 999px;
+        font-family:'Montserrat', sans-serif;
+        font-size: 0.78rem;
+        font-weight:600;
+        letter-spacing:0.14em;
+        text-transform:uppercase;
+        cursor:pointer;
+        box-shadow: 0 10px 24px rgba(20,4,8,0.35);
+        touch-action: manipulation;
+        -webkit-user-select:none;
+        user-select:none;
+        transition: transform 0.15s ease, box-shadow 0.15s ease;
+      }
+      .open-btn:active{
+        transform: scale(0.96);
+        box-shadow: 0 6px 14px rgba(20,4,8,0.3);
+      }
+
+      .env-body{
+        position:absolute;
+        inset:0;
+        background: linear-gradient(180deg, var(--ivory) 0%, var(--ivory-dim) 100%);
+        border-radius: 6px;
+        box-shadow: 0 30px 60px rgba(20,4,8,0.45), 0 8px 18px rgba(20,4,8,0.35);
+        transition: transform 0.15s ease;
+      }
+
+      .env-body::before,
+      .env-body::after{
+        content:"";
+        position:absolute;
+        bottom:0;
+        width:0;
+        height:0;
+        border-style:solid;
+      }
+      .env-body::before{
+        left:0;
+        border-width: 0 0 118px 170px;
+        border-color: transparent transparent rgba(97,30,43,0.08) transparent;
+      }
+      .env-body::after{
+        right:0;
+        border-width: 0 170px 118px 0;
+        border-color: transparent transparent rgba(97,30,43,0.08) transparent;
+      }
+
+      .env-flap{
+        position:absolute;
+        top:0;
+        left:0;
+        width:100%;
+        height:0;
+        border-left: 170px solid transparent;
+        border-right: 170px solid transparent;
+        border-top: 118px solid var(--rose);
+        transform-origin: top center;
+        transition: transform 0.9s cubic-bezier(.6,-0.28,.2,1.3);
+        z-index:6;
+        filter: drop-shadow(0 6px 10px rgba(20,4,8,0.25));
+      }
+
+      .seal{
+        position:absolute;
+        top: 78px;
+        left:50%;
+        transform: translateX(-50%);
+        width:56px;
+        height:56px;
+        border-radius:50%;
+        background: radial-gradient(circle at 35% 30%, var(--gold-soft), var(--gold) 70%, #8a6118 100%);
+        box-shadow: 0 4px 10px rgba(20,4,8,0.5), inset 0 0 0 2px rgba(255,255,255,0.15);
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        z-index:7;
+        transition: opacity 0.4s ease, transform 0.4s ease;
+      }
+      .seal svg{ width:26px; height:26px; fill: var(--burgundy-deep); }
+
+      .letter{
+        position:absolute;
+        left:5%;
+        right:5%;
+        bottom:6%;
+        height:0%;
+        background: var(--ivory);
+        border-radius: 4px;
+        box-shadow: 0 10px 25px rgba(20,4,8,0.25);
+        z-index:5;
+        transition: height 0.7s ease 0.15s, bottom 0.7s ease 0.15s;
+        overflow:hidden;
+      }
+
+      /* ---------- Estados activados por el checkbox (sin JS) ---------- */
+      #openToggle:checked ~ .stage .env-flap{
+        transform: rotateX(180deg);
+      }
+      #openToggle:checked ~ .stage .seal{
+        opacity:0;
+        transform: translateX(-50%) scale(0.4);
+      }
+      #openToggle:checked ~ .stage .letter{
+        height: 200%;
+        bottom: 40%;
+      }
+      #openToggle:checked ~ .stage .envelope-wrap{
+        opacity:0;
+        transform: scale(0.92);
+        pointer-events:none;
+      }
+      #openToggle:checked ~ .stage .card{
+        opacity:1;
+        transform: translateY(0) scale(1);
+        pointer-events:auto;
+      }
+
+      /* ---------- Tarjeta (mensaje revelado) ---------- */
+      .card{
+        width:520px;
+        max-width:92vw;
+        background: var(--ivory);
+        border-radius: 10px;
+        box-shadow: 0 40px 80px rgba(15,3,7,0.55);
+        padding: 52px 46px 42px;
+        text-align:center;
+        position:relative;
+        opacity:0;
+        transform: translateY(24px) scale(0.98);
+        pointer-events:none;
+        transition: opacity 0.7s ease 0.9s, transform 0.7s ease 0.9s;
+      }
+
+      .card::before, .card::after{
+        content:"❦";
+        color: var(--gold);
+        font-size:1.1rem;
+        display:block;
+      }
+
+      .eyebrow{
+        font-family:'Montserrat', sans-serif;
+        font-size:0.68rem;
+        letter-spacing:0.3em;
+        text-transform:uppercase;
+        color: var(--rose);
+        margin: 14px 0 6px;
+        font-weight:600;
+      }
+
+      h1{
+        font-family:'Playfair Display', serif;
+        font-style:italic;
+        font-weight:700;
+        font-size: clamp(2rem, 5vw, 2.9rem);
+        color: var(--burgundy);
+        margin: 6px 0 18px;
+        line-height:1.15;
+      }
+
+      .message{
+        font-size: 1.28rem;
+        line-height:1.75;
+        color: var(--ink);
+        margin: 0 auto 26px;
+        max-width: 420px;
+      }
+      .message em{ color: var(--burgundy); font-style: italic; }
+
+      .signature{
+        font-family:'Playfair Display', serif;
+        font-style:italic;
+        font-size:1.5rem;
+        color: var(--burgundy);
+        margin-top: 8px;
+      }
+
+      .date-tag{
+        font-family:'Montserrat', sans-serif;
+        font-size:0.65rem;
+        letter-spacing:0.2em;
+        text-transform:uppercase;
+        color: var(--gold);
+        margin-top:22px;
+        opacity:0.8;
+      }
+
+      @media (max-width: 480px){
+        .card{ padding: 42px 26px 34px; }
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <!-- Checkbox invisible: controla la apertura sin usar JavaScript -->
+    <input type="checkbox" id="openToggle">
+
+    <div class="petals">
+      <span class="petal"></span><span class="petal"></span><span class="petal"></span>
+      <span class="petal"></span><span class="petal"></span><span class="petal"></span>
+      <span class="petal"></span><span class="petal"></span><span class="petal"></span>
+      <span class="petal"></span><span class="petal"></span><span class="petal"></span>
+      <span class="petal"></span><span class="petal"></span>
+    </div>
+
+    <div class="stage">
+      <div class="stage-inner">
+
+        <div class="envelope-wrap">
+          <label for="openToggle" class="envelope">
+            <div class="env-body">
+              <div class="letter"></div>
+              <div class="env-flap"></div>
+              <div class="seal">
+                <svg viewBox="0 0 24 24"><path d="M12 21s-7.5-4.7-10-9.3C.6 8.6 2 5 5.4 5c2 0 3.4 1.1 4.1 2.3.2.4.8.4 1 0C11.2 6.1 12.6 5 14.6 5 18 5 19.4 8.6 22 11.7 19.5 16.3 12 21 12 21z"/></svg>
+              </div>
+            </div>
+          </label>
+          <p class="envelope-hint">Toca el boton para abrirlo</p>
+          <label for="openToggle" class="open-btn">Abrir carta</label>
+        </div>
+
+        <div class="card">
+          <div class="eyebrow">Para mi cachetona</div>
+          <h1>Feliz Día de la Novia</h1>
+
+          <p class="message">
+            Sabes que aunque no seamos oficiales todavía, 
+            hoy quiero recordarte lo que ya sabes todos los días: 
+            que eres la persona que hace mejor mi vida, 
+            mi lugar favorito donde siempre quiero estar y mi razón favorita para sonreír.
+            <br>
+            Gracias por elegirme, por tu paciencia y por ser esa niña llena de un amor 
+            tan bonito que no dudas en compartir conmigo. Gracias por tu sonrisa, 
+            por enseñarme a ver lo lindo en las cosas simples y por acompañarme a pesar de lo difícil
+            que se pongan las cosas.
+            <br>
+            Recuerda siempre que eres una persona maravillosa, con un corazón hermoso y valiente. 
+            Sigue así de hermosota. Muchas gracias por todo, de verdad. 
+            Te mando mucho love, muchos besos y abrazos, y no olvides que... 
+            
+          </p>
+
+          <p class="signature">Te amo</p>
+          <p class="date-tag">Feliz día, mi amor</p>
+        </div>
+
+      </div>
+    </div>
+
+  </body>
+</html>
+  
