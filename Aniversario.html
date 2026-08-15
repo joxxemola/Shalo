@@ -1,591 +1,592 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>Salo & Jose · Feliz Aniversario</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Tenor+Sans&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --wine: #250c14;
-    --wine-deep: #170811;
-    --rose: #e3a6b4;
-    --rose-soft: #f0c9d2;
-    --gold: #cda45e;
-    --gold-bright: #e6c384;
-    --cream: #f7ece2;
-    --deep-rose: #7d2c43;
-    --line: rgba(205, 164, 94, 0.35);
-  }
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>Salo & Jose · Feliz Aniversario</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Tenor+Sans&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        --wine: #250c14;
+        --wine-deep: #170811;
+        --rose: #e3a6b4;
+        --rose-soft: #f0c9d2;
+        --gold: #cda45e;
+        --gold-bright: #e6c384;
+        --cream: #f7ece2;
+        --deep-rose: #7d2c43;
+        --line: rgba(205, 164, 94, 0.35);
+      }
 
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+      * { box-sizing: border-box; margin: 0; padding: 0; }
 
-  html { scroll-behavior: smooth; }
+      html { scroll-behavior: smooth; }
 
-  body {
-    background: var(--wine);
-    color: var(--cream);
-    font-family: 'Cormorant Garamond', serif;
-    overflow-x: hidden;
-    min-height: 100vh;
-  }
+      body {
+        background: var(--wine);
+        color: var(--cream);
+        font-family: 'Cormorant Garamond', serif;
+        overflow-x: hidden;
+        min-height: 100vh;
+      }
 
-  .display { font-family: 'Playfair Display', serif; }
+      .display { font-family: 'Playfair Display', serif; }
 
-  .label {
-    font-family: 'Tenor Sans', sans-serif;
-    letter-spacing: 0.28em;
-    text-transform: uppercase;
-    font-size: 0.68rem;
-    color: var(--gold-bright);
-  }
+      .label {
+        font-family: 'Tenor Sans', sans-serif;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+        font-size: 0.68rem;
+        color: var(--gold-bright);
+      }
 
-  .visually-hidden {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-    opacity: 0;
-  }
+      .visually-hidden {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        opacity: 0;
+      }
 
-  /* ---------- Ambient petals (static, CSS-only animation) ---------- */
-  .petals {
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 1;
-    overflow: hidden;
-  }
-  .petal {
-    position: absolute;
-    top: -8%;
-    font-size: 1.1rem;
-    opacity: 0.55;
-    color: var(--rose);
-    animation: fall linear infinite;
-  }
-  @keyframes fall {
-    0% { transform: translateY(-10vh) translateX(0) rotate(0deg); opacity: 0; }
-    10% { opacity: 0.6; }
-    90% { opacity: 0.5; }
-    100% { transform: translateY(110vh) translateX(20px) rotate(200deg); opacity: 0; }
-  }
+      /* ---------- Ambient petals (static, CSS-only animation) ---------- */
+      .petals {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 1;
+        overflow: hidden;
+      }
+      .petal {
+        position: absolute;
+        top: -8%;
+        font-size: 1.1rem;
+        opacity: 0.55;
+        color: var(--rose);
+        animation: fall linear infinite;
+      }
+      @keyframes fall {
+        0% { transform: translateY(-10vh) translateX(0) rotate(0deg); opacity: 0; }
+        10% { opacity: 0.6; }
+        90% { opacity: 0.5; }
+        100% { transform: translateY(110vh) translateX(20px) rotate(200deg); opacity: 0; }
+      }
 
-  section {
-    position: relative;
-    z-index: 2;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 8vh 7vw;
-    text-align: center;
-  }
+      section {
+        position: relative;
+        z-index: 2;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 8vh 7vw;
+        text-align: center;
+      }
 
-  /* ---------- HERO ---------- */
-  .hero {
-    background:
-      radial-gradient(ellipse at 50% 0%, rgba(125,44,67,0.55), transparent 60%),
-      radial-gradient(ellipse at 50% 100%, rgba(205,164,94,0.12), transparent 55%),
-      var(--wine);
-  }
+      /* ---------- HERO ---------- */
+      .hero {
+        background:
+          radial-gradient(ellipse at 50% 0%, rgba(125,44,67,0.55), transparent 60%),
+          radial-gradient(ellipse at 50% 100%, rgba(205,164,94,0.12), transparent 55%),
+          var(--wine);
+      }
 
-  .hero .ornament { width: 46px; height: 46px; margin-bottom: 1.4rem; opacity: 0.9; }
+      .hero .ornament { width: 46px; height: 46px; margin-bottom: 1.4rem; opacity: 0.9; }
 
-  .hero .names {
-    font-size: clamp(2.6rem, 13vw, 3.6rem);
-    line-height: 1.05;
-    font-weight: 600;
-    color: var(--cream);
-  }
+      .hero .names {
+        font-size: clamp(2.6rem, 13vw, 3.6rem);
+        line-height: 1.05;
+        font-weight: 600;
+        color: var(--cream);
+      }
 
-  .hero .amp {
-    display: block;
-    font-style: italic;
-    font-weight: 500;
-    color: var(--gold-bright);
-    font-size: 0.55em;
-    margin: 0.15em 0;
-  }
+      .hero .amp {
+        display: block;
+        font-style: italic;
+        font-weight: 500;
+        color: var(--gold-bright);
+        font-size: 0.55em;
+        margin: 0.15em 0;
+      }
 
-  .hero .sub {
-    margin-top: 1.6rem;
-    font-size: 1.28rem;
-    letter-spacing: 0.02em;
-    color: var(--rose-soft);
-    font-style: italic;
-  }
+      .hero .sub {
+        margin-top: 1.6rem;
+        font-size: 1.28rem;
+        letter-spacing: 0.02em;
+        color: var(--rose-soft);
+        font-style: italic;
+      }
 
-  .hero .date-pill {
-    margin-top: 2.4rem;
-    padding: 0.55rem 1.4rem;
-    border: 1px solid var(--line);
-    border-radius: 999px;
-    font-family: 'Tenor Sans', sans-serif;
-    font-size: 0.72rem;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--gold-bright);
-  }
+      .hero .date-pill {
+        margin-top: 2.4rem;
+        padding: 0.55rem 1.4rem;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        font-family: 'Tenor Sans', sans-serif;
+        font-size: 0.72rem;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--gold-bright);
+      }
 
-  .scroll-cue {
-    position: absolute;
-    bottom: 6vh;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-    animation: bob 2.4s ease-in-out infinite;
-  }
-  .scroll-cue span {
-    font-size: 0.62rem;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--gold);
-    font-family: 'Tenor Sans', sans-serif;
-  }
-  @keyframes bob {
-    0%,100% { transform: translate(-50%, 0); }
-    50% { transform: translate(-50%, 8px); }
-  }
+      .scroll-cue {
+        position: absolute;
+        bottom: 6vh;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+        animation: bob 2.4s ease-in-out infinite;
+      }
+      .scroll-cue span {
+        font-size: 0.62rem;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: var(--gold);
+        font-family: 'Tenor Sans', sans-serif;
+      }
+      @keyframes bob {
+        0%,100% { transform: translate(-50%, 0); }
+        50% { transform: translate(-50%, 8px); }
+      }
 
-  /* ---------- LETTER / ENVELOPE (checkbox-controlled, no JS) ---------- */
-  .letter-section { background: var(--wine); }
+      /* ---------- LETTER / ENVELOPE (checkbox-controlled, no JS) ---------- */
+      .letter-section { background: var(--wine); }
 
-  #letterToggle:checked ~ .open-btn { opacity: 0; pointer-events: none; }
+      #letterToggle:checked ~ .open-btn { opacity: 0; pointer-events: none; }
 
-  .open-btn {
-    display: inline-block;
-    margin-top: 1.2rem;
-    padding: 0.8rem 1.8rem;
-    border-radius: 999px;
-    border: 1px solid var(--gold);
-    background: linear-gradient(120deg, var(--gold), var(--gold-bright));
-    color: var(--wine-deep);
-    font-family: 'Tenor Sans', sans-serif;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    font-size: 0.78rem;
-    cursor: pointer;
-    transition: opacity 0.4s ease;
-  }
+      .open-btn {
+        display: inline-block;
+        margin-top: 1.2rem;
+        padding: 0.8rem 1.8rem;
+        border-radius: 999px;
+        border: 1px solid var(--gold);
+        background: linear-gradient(120deg, var(--gold), var(--gold-bright));
+        color: var(--wine-deep);
+        font-family: 'Tenor Sans', sans-serif;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        font-size: 0.78rem;
+        cursor: pointer;
+        transition: opacity 0.4s ease;
+      }
 
-  .envelope-wrap {
-    perspective: 1400px;
-    width: min(300px, 78vw);
-    margin-top: 2.2rem;
-  }
+      .envelope-wrap {
+        perspective: 1400px;
+        width: min(300px, 78vw);
+        margin-top: 2.2rem;
+      }
 
-  .envelope { position: relative; width: 100%; aspect-ratio: 3 / 2; }
+      .envelope { position: relative; width: 100%; aspect-ratio: 3 / 2; }
 
-  .env-body {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(160deg, #3a1420, var(--deep-rose));
-    border: 1px solid var(--line);
-    border-radius: 6px;
-    box-shadow: 0 20px 45px rgba(0,0,0,0.45);
-  }
+      .env-body {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(160deg, #3a1420, var(--deep-rose));
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        box-shadow: 0 20px 45px rgba(0,0,0,0.45);
+      }
 
-  .env-flap {
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 100%;
-    background: linear-gradient(160deg, #4a1a29, #391120);
-    clip-path: polygon(0 0, 100% 0, 50% 62%);
-    transform-origin: top center;
-    transition: transform 0.8s cubic-bezier(.4,0,.2,1);
-    border-radius: 6px 6px 0 0;
-    z-index: 3;
-  }
-  #letterToggle:checked ~ .envelope-wrap .env-flap { transform: rotateX(180deg); }
+      .env-flap {
+        position: absolute;
+        top: 0; left: 0; right: 0;
+        height: 100%;
+        background: linear-gradient(160deg, #4a1a29, #391120);
+        clip-path: polygon(0 0, 100% 0, 50% 62%);
+        transform-origin: top center;
+        transition: transform 0.8s cubic-bezier(.4,0,.2,1);
+        border-radius: 6px 6px 0 0;
+        z-index: 3;
+      }
+      #letterToggle:checked ~ .envelope-wrap .env-flap { transform: rotateX(180deg); }
 
-  .seal {
-    position: absolute;
-    top: 40%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 46px;
-    height: 46px;
-    border-radius: 50%;
-    background: radial-gradient(circle at 35% 30%, var(--gold-bright), var(--gold) 65%, #a37f3f 100%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Playfair Display', serif;
-    font-weight: 700;
-    color: var(--wine-deep);
-    font-size: 1.1rem;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.4);
-    z-index: 4;
-    transition: opacity 0.4s ease, transform 0.4s ease;
-  }
-  #letterToggle:checked ~ .envelope-wrap .seal { opacity: 0; transform: translate(-50%,-50%) scale(0.5); }
+      .seal {
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 46px;
+        height: 46px;
+        border-radius: 50%;
+        background: radial-gradient(circle at 35% 30%, var(--gold-bright), var(--gold) 65%, #a37f3f 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Playfair Display', serif;
+        font-weight: 700;
+        color: var(--wine-deep);
+        font-size: 1.1rem;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+        z-index: 4;
+        transition: opacity 0.4s ease, transform 0.4s ease;
+      }
+      #letterToggle:checked ~ .envelope-wrap .seal { opacity: 0; transform: translate(-50%,-50%) scale(0.5); }
 
-  .letter-paper {
-    margin-top: 2.4rem;
-    max-width: 460px;
-    background: linear-gradient(180deg, #fbf3e9, #f3e6d4);
-    color: #3a2418;
-    border-radius: 4px;
-    padding: 2.4rem 1.9rem;
-    text-align: left;
-    box-shadow: 0 25px 60px rgba(0,0,0,0.5);
-    opacity: 0;
-    transform: translateY(24px);
-    max-height: 0;
-    overflow: hidden;
-    transition: opacity 0.9s ease, transform 0.9s ease, max-height 0.9s ease;
-  }
-  #letterToggle:checked ~ .letter-paper {
-    opacity: 1;
-    transform: translateY(0);
-    max-height: 1400px;
-  }
+      .letter-paper {
+        margin-top: 2.4rem;
+        max-width: 460px;
+        background: linear-gradient(180deg, #fbf3e9, #f3e6d4);
+        color: #3a2418;
+        border-radius: 4px;
+        padding: 2.4rem 1.9rem;
+        text-align: left;
+        box-shadow: 0 25px 60px rgba(0,0,0,0.5);
+        opacity: 0;
+        transform: translateY(24px);
+        max-height: 0;
+        overflow: hidden;
+        transition: opacity 0.9s ease, transform 0.9s ease, max-height 0.9s ease;
+      }
+      #letterToggle:checked ~ .letter-paper {
+        opacity: 1;
+        transform: translateY(0);
+        max-height: 1400px;
+      }
 
-  .letter-paper .to {
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
-    font-size: 1.6rem;
-    color: var(--deep-rose);
-    margin-bottom: 1.1rem;
-  }
-  .letter-paper p { font-size: 1.18rem; line-height: 1.65; margin-bottom: 1rem; }
-  .letter-paper .sign {
-    margin-top: 1.4rem;
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
-    font-size: 1.35rem;
-    color: var(--deep-rose);
-    text-align: right;
-  }
+      .letter-paper .to {
+        font-family: 'Playfair Display', serif;
+        font-style: italic;
+        font-size: 1.6rem;
+        color: var(--deep-rose);
+        margin-bottom: 1.1rem;
+      }
+      .letter-paper p { font-size: 1.18rem; line-height: 1.65; margin-bottom: 1rem; }
+      .letter-paper .sign {
+        margin-top: 1.4rem;
+        font-family: 'Playfair Display', serif;
+        font-style: italic;
+        font-size: 1.35rem;
+        color: var(--deep-rose);
+        text-align: right;
+      }
 
-  /* ---------- QUIZ (radio-controlled stepper, no JS) ---------- */
-  .quiz-section { background: var(--wine); }
+      /* ---------- QUIZ (radio-controlled stepper, no JS) ---------- */
+      .quiz-section { background: var(--wine); }
 
-  .quiz-intro .display { font-size: clamp(1.9rem, 8vw, 2.4rem); }
-  .quiz-intro p { margin-top: 0.9rem; color: var(--rose-soft); font-size: 1.15rem; max-width: 340px; }
+      .quiz-intro .display { font-size: clamp(1.9rem, 8vw, 2.4rem); }
+      .quiz-intro p { margin-top: 0.9rem; color: var(--rose-soft); font-size: 1.15rem; max-width: 340px; }
 
-  .quiz-card {
-    margin-top: 2.2rem;
-    width: min(400px, 88vw);
-    background: rgba(255,255,255,0.03);
-    border: 1px solid var(--line);
-    border-radius: 14px;
-    padding: 2rem 1.5rem;
-    position: relative;
-  }
+      .quiz-card {
+        margin-top: 2.2rem;
+        width: min(400px, 88vw);
+        background: rgba(255,255,255,0.03);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 2rem 1.5rem;
+        position: relative;
+      }
 
-  .quiz-progress { display: flex; gap: 6px; justify-content: center; margin-bottom: 1.6rem; }
-  .quiz-progress i {
-    width: 22px;
-    height: 3px;
-    border-radius: 2px;
-    background: var(--line);
-    display: block;
-    transition: background 0.3s ease;
-  }
-  #step1:checked ~ .quiz-progress i:nth-child(-n+1) { background: var(--gold); }
-  #step2:checked ~ .quiz-progress i:nth-child(-n+2) { background: var(--gold); }
-  #step3:checked ~ .quiz-progress i:nth-child(-n+3) { background: var(--gold); }
-  #step4:checked ~ .quiz-progress i:nth-child(-n+4) { background: var(--gold); }
-  #step5:checked ~ .quiz-progress i:nth-child(-n+5) { background: var(--gold); }
+      .quiz-progress { display: flex; gap: 6px; justify-content: center; margin-bottom: 1.6rem; }
+      .quiz-progress i {
+        width: 22px;
+        height: 3px;
+        border-radius: 2px;
+        background: var(--line);
+        display: block;
+        transition: background 0.3s ease;
+      }
+      #step1:checked ~ .quiz-progress i:nth-child(-n+1) { background: var(--gold); }
+      #step2:checked ~ .quiz-progress i:nth-child(-n+2) { background: var(--gold); }
+      #step3:checked ~ .quiz-progress i:nth-child(-n+3) { background: var(--gold); }
+      #step4:checked ~ .quiz-progress i:nth-child(-n+4) { background: var(--gold); }
+      #step5:checked ~ .quiz-progress i:nth-child(-n+5) { background: var(--gold); }
 
-  .panel { display: none; text-align: left; }
-  #step1:checked ~ .panel-1 { display: block; }
-  #step2:checked ~ .panel-2 { display: block; }
-  #step3:checked ~ .panel-3 { display: block; }
-  #step4:checked ~ .panel-4 { display: block; }
-  #step5:checked ~ .panel-5 { display: block; }
+      .panel { display: none; text-align: left; }
+      #step1:checked ~ .panel-1 { display: block; }
+      #step2:checked ~ .panel-2 { display: block; }
+      #step3:checked ~ .panel-3 { display: block; }
+      #step4:checked ~ .panel-4 { display: block; }
+      #step5:checked ~ .panel-5 { display: block; }
 
-  .q-text {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.4rem;
-    line-height: 1.4;
-    margin-bottom: 1.5rem;
-  }
+      .q-text {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.4rem;
+        line-height: 1.4;
+        margin-bottom: 1.5rem;
+      }
 
-  .opt {
-    display: block;
-    width: 100%;
-    text-align: left;
-    background: transparent;
-    border: 1px solid var(--line);
-    color: var(--cream);
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.12rem;
-    padding: 0.85rem 1.1rem;
-    border-radius: 10px;
-    margin-bottom: 0.7rem;
-    cursor: pointer;
-    transition: border-color 0.25s ease, background 0.25s ease;
-  }
+      .opt {
+        display: block;
+        width: 100%;
+        text-align: left;
+        background: transparent;
+        border: 1px solid var(--line);
+        color: var(--cream);
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 1.12rem;
+        padding: 0.85rem 1.1rem;
+        border-radius: 10px;
+        margin-bottom: 0.7rem;
+        cursor: pointer;
+        transition: border-color 0.25s ease, background 0.25s ease;
+      }
 
-  /* highlight the picked option (adjacent radio + label) */
-  input[type="radio"]:checked + label.opt {
-    border-color: var(--gold);
-    background: rgba(205, 164, 94, 0.12);
-  }
+      /* highlight the picked option (adjacent radio + label) */
+      input[type="radio"]:checked + label.opt {
+        border-color: var(--gold);
+        background: rgba(205, 164, 94, 0.12);
+      }
 
-  .q-response {
-    margin-top: 0.4rem;
-    font-style: italic;
-    color: var(--rose-soft);
-    font-size: 1.05rem;
-    min-height: 1.4em;
-    display: none;
-  }
-  /* show response once any option in the question is picked */
-  #q1a:checked ~ .resp-1, #q1b:checked ~ .resp-1, #q1c:checked ~ .resp-1 { display: block; }
-  #q2a:checked ~ .resp-2, #q2b:checked ~ .resp-2, #q2c:checked ~ .resp-2 { display: block; }
-  #q3a:checked ~ .resp-3, #q3b:checked ~ .resp-3, #q3c:checked ~ .resp-3 { display: block; }
-  #q4a:checked ~ .resp-4, #q4b:checked ~ .resp-4, #q4c:checked ~ .resp-4 { display: block; }
-  #q5a:checked ~ .resp-5, #q5b:checked ~ .resp-5, #q5c:checked ~ .resp-5 { display: block; }
+      .q-response {
+        margin-top: 0.4rem;
+        font-style: italic;
+        color: var(--rose-soft);
+        font-size: 1.05rem;
+        min-height: 1.4em;
+        display: none;
+      }
+      /* show response once any option in the question is picked */
+      #q1a:checked ~ .resp-1, #q1b:checked ~ .resp-1, #q1c:checked ~ .resp-1 { display: block; }
+      #q2a:checked ~ .resp-2, #q2b:checked ~ .resp-2, #q2c:checked ~ .resp-2 { display: block; }
+      #q3a:checked ~ .resp-3, #q3b:checked ~ .resp-3, #q3c:checked ~ .resp-3 { display: block; }
+      #q4a:checked ~ .resp-4, #q4b:checked ~ .resp-4, #q4c:checked ~ .resp-4 { display: block; }
+      #q5a:checked ~ .resp-5, #q5b:checked ~ .resp-5, #q5c:checked ~ .resp-5 { display: block; }
 
-  .next-btn {
-    display: block;
-    margin-top: 1.4rem;
-    width: 100%;
-    padding: 0.85rem;
-    border-radius: 999px;
-    border: none;
-    background: linear-gradient(120deg, var(--gold), var(--gold-bright));
-    color: var(--wine-deep);
-    font-family: 'Tenor Sans', sans-serif;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    font-size: 0.78rem;
-    text-align: center;
-    text-decoration: none;
-    cursor: pointer;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s ease;
-  }
-  /* reveal the "next" control once that question has been answered */
-  #q1a:checked ~ .next-1, #q1b:checked ~ .next-1, #q1c:checked ~ .next-1 { opacity: 1; pointer-events: auto; }
-  #q2a:checked ~ .next-2, #q2b:checked ~ .next-2, #q2c:checked ~ .next-2 { opacity: 1; pointer-events: auto; }
-  #q3a:checked ~ .next-3, #q3b:checked ~ .next-3, #q3c:checked ~ .next-3 { opacity: 1; pointer-events: auto; }
-  #q4a:checked ~ .next-4, #q4b:checked ~ .next-4, #q4c:checked ~ .next-4 { opacity: 1; pointer-events: auto; }
-  #q5a:checked ~ .next-5, #q5b:checked ~ .next-5, #q5c:checked ~ .next-5 { opacity: 1; pointer-events: auto; }
+      .next-btn {
+        display: block;
+        margin-top: 1.4rem;
+        width: 100%;
+        padding: 0.85rem;
+        border-radius: 999px;
+        border: none;
+        background: linear-gradient(120deg, var(--gold), var(--gold-bright));
+        color: var(--wine-deep);
+        font-family: 'Tenor Sans', sans-serif;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        font-size: 0.78rem;
+        text-align: center;
+        text-decoration: none;
+        cursor: pointer;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+      }
+      /* reveal the "next" control once that question has been answered */
+      #q1a:checked ~ .next-1, #q1b:checked ~ .next-1, #q1c:checked ~ .next-1 { opacity: 1; pointer-events: auto; }
+      #q2a:checked ~ .next-2, #q2b:checked ~ .next-2, #q2c:checked ~ .next-2 { opacity: 1; pointer-events: auto; }
+      #q3a:checked ~ .next-3, #q3b:checked ~ .next-3, #q3c:checked ~ .next-3 { opacity: 1; pointer-events: auto; }
+      #q4a:checked ~ .next-4, #q4b:checked ~ .next-4, #q4c:checked ~ .next-4 { opacity: 1; pointer-events: auto; }
+      #q5a:checked ~ .next-5, #q5b:checked ~ .next-5, #q5c:checked ~ .next-5 { opacity: 1; pointer-events: auto; }
 
-  .quiz-footnote {
-    margin-top: 1.6rem;
-    font-family: 'Tenor Sans', sans-serif;
-    font-size: 0.7rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--gold);
-  }
+      .quiz-footnote {
+        margin-top: 1.6rem;
+        font-family: 'Tenor Sans', sans-serif;
+        font-size: 0.7rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--gold);
+      }
 
-  /* ---------- FINAL ---------- */
-  .final-section {
-    background: radial-gradient(ellipse at 50% 30%, rgba(125,44,67,0.6), var(--wine) 65%);
-  }
-  .final-section .display { font-size: clamp(2.2rem, 10vw, 3rem); color: var(--gold-bright); }
-  .final-section .sub2 {
-    margin-top: 1rem;
-    font-size: 1.25rem;
-    color: var(--rose-soft);
-    font-style: italic;
-    max-width: 340px;
-  }
-  .final-date {
-    margin-top: 2rem;
-    font-family: 'Tenor Sans', sans-serif;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    font-size: 0.78rem;
-    color: var(--cream);
-    border-top: 1px solid var(--line);
-    border-bottom: 1px solid var(--line);
-    padding: 0.9rem 0;
-  }
+      /* ---------- FINAL ---------- */
+      .final-section {
+        background: radial-gradient(ellipse at 50% 30%, rgba(125,44,67,0.6), var(--wine) 65%);
+      }
+      .final-section .display { font-size: clamp(2.2rem, 10vw, 3rem); color: var(--gold-bright); }
+      .final-section .sub2 {
+        margin-top: 1rem;
+        font-size: 1.25rem;
+        color: var(--rose-soft);
+        font-style: italic;
+        max-width: 340px;
+      }
+      .final-date {
+        margin-top: 2rem;
+        font-family: 'Tenor Sans', sans-serif;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        font-size: 0.78rem;
+        color: var(--cream);
+        border-top: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+        padding: 0.9rem 0;
+      }
 
-  footer {
-    position: relative;
-    z-index: 2;
-    text-align: center;
-    padding: 3rem 6vw 4rem;
-    color: var(--gold);
-    font-family: 'Tenor Sans', sans-serif;
-    font-size: 0.62rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    opacity: 0.6;
-  }
+      footer {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+        padding: 3rem 6vw 4rem;
+        color: var(--gold);
+        font-family: 'Tenor Sans', sans-serif;
+        font-size: 0.62rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        opacity: 0.6;
+      }
 
-  @media (prefers-reduced-motion: reduce) {
-    .petal, .scroll-cue { animation: none; }
-  }
-</style>
-</head>
-<body>
+      @media (prefers-reduced-motion: reduce) {
+        .petal, .scroll-cue { animation: none; }
+      }
+    </style>
+  </head>
 
-<div class="petals">
-  <div class="petal" style="left:4%; font-size:0.8rem; animation-duration:14s; animation-delay:0s;">❀</div>
-  <div class="petal" style="left:14%; font-size:1.1rem; animation-duration:18s; animation-delay:2s;">✿</div>
-  <div class="petal" style="left:24%; font-size:0.9rem; animation-duration:12s; animation-delay:5s;">❁</div>
-  <div class="petal" style="left:34%; font-size:1.2rem; animation-duration:20s; animation-delay:1s;">❀</div>
-  <div class="petal" style="left:44%; font-size:0.85rem; animation-duration:15s; animation-delay:7s;">✿</div>
-  <div class="petal" style="left:54%; font-size:1rem; animation-duration:17s; animation-delay:3s;">❁</div>
-  <div class="petal" style="left:64%; font-size:0.9rem; animation-duration:13s; animation-delay:6s;">❀</div>
-  <div class="petal" style="left:74%; font-size:1.15rem; animation-duration:19s; animation-delay:0.5s;">✿</div>
-  <div class="petal" style="left:84%; font-size:0.8rem; animation-duration:16s; animation-delay:4s;">❁</div>
-  <div class="petal" style="left:92%; font-size:1.05rem; animation-duration:14s; animation-delay:8s;">❀</div>
-  <div class="petal" style="left:9%; font-size:0.9rem; animation-duration:21s; animation-delay:9s;">✿</div>
-  <div class="petal" style="left:59%; font-size:0.85rem; animation-duration:11s; animation-delay:10s;">❁</div>
-</div>
+  <body>
 
-<!-- HERO -->
-<section class="hero">
-  <svg class="ornament" viewBox="0 0 48 48" fill="none">
-    <path d="M24 6C24 6 14 14 14 24C14 32 19 38 24 38C29 38 34 32 34 24C34 14 24 6 24 6Z" stroke="#cda45e" stroke-width="1.2"/>
-    <path d="M24 38V44" stroke="#cda45e" stroke-width="1.2"/>
-    <path d="M18 44H30" stroke="#cda45e" stroke-width="1.2"/>
-  </svg>
-  <p class="label">Aniversario</p>
-  <h1 class="names display">
-    Salo
-    <span class="amp">&amp;</span>
-    Jose
-  </h1>
-  <p class="sub">Un año más eligiéndonos</p>
-  <div class="date-pill">Sábado 15 de Agosto</div>
-  <div class="scroll-cue">
-    <span>Desliza</span>
-    <svg width="14" height="18" viewBox="0 0 14 18" fill="none"><path d="M7 1V17M7 17L1 11M7 17L13 11" stroke="#cda45e" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-  </div>
-</section>
-
-<!-- LETTER -->
-<section class="letter-section">
-  <p class="label">Para ti</p>
-
-  <input type="checkbox" id="letterToggle" class="visually-hidden">
-  <label for="letterToggle" class="open-btn">Abrir carta 💌</label>
-
-  <div class="envelope-wrap">
-    <div class="envelope">
-      <div class="env-body"></div>
-      <div class="env-flap"></div>
-      <div class="seal">S&amp;J</div>
-    </div>
-  </div>
-
-  <div class="letter-paper">
-    <p class="to">Mi Salo,</p>
-    <p>No sé si existe una manera correcta de decir esto, así que voy a decirlo simplemente: hoy celebro que hace un año y algo el destino decidió juntarnos, y desde entonces cada día contigo se ha sentido como una razón más para quedarme.</p>
-    <p>Gracias por tu paciencia en mis días difíciles, por reírte de mis chistes malos como si fueran los mejores del mundo, y por convertir lo cotidiano —un café, un mensaje de buenos días, un silencio compartido— en algo que espero con ganas.</p>
-    <p>Contigo he aprendido que el amor no siempre es grande y ruidoso; a veces es quedarse, es elegir, es seguir intentando incluso cuando no es fácil. Y yo te sigo eligiendo, una y otra vez, sin dudarlo.</p>
-    <p>Que este sea el primero de muchos aniversarios juntos. Te amo, hoy y siempre.</p>
-    <p class="sign">— Jose</p>
-  </div>
-</section>
-
-<!-- QUIZ -->
-<section class="quiz-section">
-  <div class="quiz-intro">
-    <p class="label">Un pequeño juego</p>
-    <h2 class="display" style="margin-top:0.6rem;">¿Qué tanto sabemos de nosotros?</h2>
-    <p>Responde con el corazón. No hay respuestas incorrectas.</p>
-  </div>
-
-  <div class="quiz-card">
-    <!-- step radios control which question panel is visible -->
-    <input type="radio" name="step" id="step1" class="visually-hidden" checked>
-    <input type="radio" name="step" id="step2" class="visually-hidden">
-    <input type="radio" name="step" id="step3" class="visually-hidden">
-    <input type="radio" name="step" id="step4" class="visually-hidden">
-    <input type="radio" name="step" id="step5" class="visually-hidden">
-
-    <div class="quiz-progress"><i></i><i></i><i></i><i></i><i></i></div>
-
-    <!-- Pregunta 1 -->
-    <div class="panel panel-1">
-      <div class="q-text">¿Cuál es la mejor parte de nuestro día a día?</div>
-      <input type="radio" name="q1" id="q1a" class="visually-hidden">
-      <label for="q1a" class="opt">Cuando me escribes primero por la mañana</label>
-      <input type="radio" name="q1" id="q1b" class="visually-hidden">
-      <label for="q1b" class="opt">Cuando por fin nos vemos y todo lo demás desaparece</label>
-      <input type="radio" name="q1" id="q1c" class="visually-hidden">
-      <label for="q1c" class="opt">Ambas, no puedo elegir solo una</label>
-      <p class="q-response resp-1">Con cualquiera que hayas elegido, tienes razón: todo contigo se siente especial.</p>
-      <label for="step2" class="next-btn next-1">Siguiente</label>
+    <div class="petals">
+      <div class="petal" style="left:4%; font-size:0.8rem; animation-duration:14s; animation-delay:0s;">❀</div>
+      <div class="petal" style="left:14%; font-size:1.1rem; animation-duration:18s; animation-delay:2s;">✿</div>
+      <div class="petal" style="left:24%; font-size:0.9rem; animation-duration:12s; animation-delay:5s;">❁</div>
+      <div class="petal" style="left:34%; font-size:1.2rem; animation-duration:20s; animation-delay:1s;">❀</div>
+      <div class="petal" style="left:44%; font-size:0.85rem; animation-duration:15s; animation-delay:7s;">✿</div>
+      <div class="petal" style="left:54%; font-size:1rem; animation-duration:17s; animation-delay:3s;">❁</div>
+      <div class="petal" style="left:64%; font-size:0.9rem; animation-duration:13s; animation-delay:6s;">❀</div>
+      <div class="petal" style="left:74%; font-size:1.15rem; animation-duration:19s; animation-delay:0.5s;">✿</div>
+      <div class="petal" style="left:84%; font-size:0.8rem; animation-duration:16s; animation-delay:4s;">❁</div>
+      <div class="petal" style="left:92%; font-size:1.05rem; animation-duration:14s; animation-delay:8s;">❀</div>
+      <div class="petal" style="left:9%; font-size:0.9rem; animation-duration:21s; animation-delay:9s;">✿</div>
+      <div class="petal" style="left:59%; font-size:0.85rem; animation-duration:11s; animation-delay:10s;">❁</div>
     </div>
 
-    <!-- Pregunta 2 -->
-    <div class="panel panel-2">
-      <div class="q-text">Si fuéramos un dúo con superpoderes, ¿cuál sería el nuestro?</div>
-      <input type="radio" name="q2" id="q2a" class="visually-hidden">
-      <label for="q2a" class="opt">Hacer que cualquier plan aburrido se vuelva divertido</label>
-      <input type="radio" name="q2" id="q2b" class="visually-hidden">
-      <label for="q2b" class="opt">Leernos la mente sin decir una palabra</label>
-      <input type="radio" name="q2" id="q2c" class="visually-hidden">
-      <label for="q2c" class="opt">Convertir un mal día en uno bueno con solo abrazarnos</label>
-      <p class="q-response resp-2">Sea cual sea, contigo definitivamente formamos un buen equipo.</p>
-      <label for="step3" class="next-btn next-2">Siguiente</label>
-    </div>
+    <!-- HERO -->
+    <section class="hero">
+      <svg class="ornament" viewBox="0 0 48 48" fill="none">
+        <path d="M24 6C24 6 14 14 14 24C14 32 19 38 24 38C29 38 34 32 34 24C34 14 24 6 24 6Z" stroke="#cda45e" stroke-width="1.2"/>
+        <path d="M24 38V44" stroke="#cda45e" stroke-width="1.2"/>
+        <path d="M18 44H30" stroke="#cda45e" stroke-width="1.2"/>
+      </svg>
+      <p class="label">Aniversario</p>
+      <h1 class="names display">
+        Salo
+        <span class="amp">&amp;</span>
+        Jose
+      </h1>
+      <p class="sub">Un año más eligiéndonos</p>
+      <div class="date-pill">Sábado 15 de Agosto</div>
+      <div class="scroll-cue">
+        <span>Desliza</span>
+        <svg width="14" height="18" viewBox="0 0 14 18" fill="none"><path d="M7 1V17M7 17L1 11M7 17L13 11" stroke="#cda45e" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+    </section>
 
-    <!-- Pregunta 3 -->
-    <div class="panel panel-3">
-      <div class="q-text">¿Cuántas veces al día pienso en ti?</div>
-      <input type="radio" name="q3" id="q3a" class="visually-hidden">
-      <label for="q3a" class="opt">Todas las que pueda</label>
-      <input type="radio" name="q3" id="q3b" class="visually-hidden">
-      <label for="q3b" class="opt">Más de las que admito</label>
-      <input type="radio" name="q3" id="q3c" class="visually-hidden">
-      <label for="q3c" class="opt">Siempre, en algún rincón de mi mente</label>
-      <p class="q-response resp-3">La respuesta correcta es: constantemente.</p>
-      <label for="step4" class="next-btn next-3">Siguiente</label>
-    </div>
+    <!-- LETTER -->
+    <section class="letter-section">
+      <p class="label">Para ti</p>
 
-    <!-- Pregunta 4 -->
-    <div class="panel panel-4">
-      <div class="q-text">¿Qué es lo que más admiro de ti?</div>
-      <input type="radio" name="q4" id="q4a" class="visually-hidden">
-      <label for="q4a" class="opt">Tu sonrisa</label>
-      <input type="radio" name="q4" id="q4b" class="visually-hidden">
-      <label for="q4b" class="opt">Tu fuerza para salir adelante</label>
-      <input type="radio" name="q4" id="q4c" class="visually-hidden">
-      <label for="q4c" class="opt">Simplemente, todo tú</label>
-      <p class="q-response resp-4">Todas son ciertas. Eres de mis personas favoritas en este mundo.</p>
-      <label for="step5" class="next-btn next-4">Siguiente</label>
-    </div>
+      <input type="checkbox" id="letterToggle" class="visually-hidden">
+      <label for="letterToggle" class="open-btn">Abrir carta 💌</label>
 
-    <!-- Pregunta 5 -->
-    <div class="panel panel-5">
-      <div class="q-text">¿Qué tan seguro estoy de querer seguir a tu lado?</div>
-      <input type="radio" name="q5" id="q5a" class="visually-hidden">
-      <label for="q5a" class="opt">Completamente seguro</label>
-      <input type="radio" name="q5" id="q5b" class="visually-hidden">
-      <label for="q5b" class="opt">Más seguro que de cualquier otra cosa</label>
-      <input type="radio" name="q5" id="q5c" class="visually-hidden">
-      <label for="q5c" class="opt">Para siempre y sin dudarlo</label>
-      <p class="q-response resp-5">Esa es exactamente la verdad.</p>
-      <a href="#finalSection" class="next-btn next-5">Ver sorpresa final</a>
-    </div>
-  </div>
+      <div class="envelope-wrap">
+        <div class="envelope">
+          <div class="env-body"></div>
+          <div class="env-flap"></div>
+          <div class="seal">S&amp;J</div>
+        </div>
+      </div>
 
-  <p class="quiz-footnote">Cinco preguntas, un solo corazón: el nuestro</p>
-</section>
+      <div class="letter-paper">
+        <p class="to">Mi Salo,</p>
+        <p>No sé si existe una manera correcta de decir esto, así que voy a decirlo simplemente: hoy celebro que hace un año y algo el destino decidió juntarnos, y desde entonces cada día contigo se ha sentido como una razón más para quedarme.</p>
+        <p>Gracias por tu paciencia en mis días difíciles, por reírte de mis chistes malos como si fueran los mejores del mundo, y por convertir lo cotidiano —un café, un mensaje de buenos días, un silencio compartido— en algo que espero con ganas.</p>
+        <p>Contigo he aprendido que el amor no siempre es grande y ruidoso; a veces es quedarse, es elegir, es seguir intentando incluso cuando no es fácil. Y yo te sigo eligiendo, una y otra vez, sin dudarlo.</p>
+        <p>Que este sea el primero de muchos aniversarios juntos. Te amo, hoy y siempre.</p>
+        <p class="sign">— Jose</p>
+      </div>
+    </section>
 
-<!-- FINAL -->
-<section class="final-section" id="finalSection">
-  <svg width="52" height="52" viewBox="0 0 52 52" fill="none">
-    <path d="M26 46C26 46 6 33 6 18.5C6 10.5 12 5 19 5C23 5 26 8 26 8C26 8 29 5 33 5C40 5 46 10.5 46 18.5C46 33 26 46 26 46Z" fill="#e3a6b4"/>
-  </svg>
-  <h2 class="display" style="margin-top:1.2rem;">Ganaste, siempre ganamos</h2>
-  <p class="sub2">Sin importar cuántas respuestas hayamos acertado, lo único que de verdad importa es que seguimos eligiéndonos. Feliz aniversario, mi amor.</p>
-  <div class="final-date">Sábado 15 de Agosto · Salo &amp; Jose</div>
-</section>
+    <!-- QUIZ -->
+    <section class="quiz-section">
+      <div class="quiz-intro">
+        <p class="label">Un pequeño juego</p>
+        <h2 class="display" style="margin-top:0.6rem;">¿Qué tanto sabemos de nosotros?</h2>
+        <p>Responde con el corazón. No hay respuestas incorrectas.</p>
+      </div>
 
-<footer>Hecho con amor para Salo</footer>
+      <div class="quiz-card">
+        <!-- step radios control which question panel is visible -->
+        <input type="radio" name="step" id="step1" class="visually-hidden" checked>
+        <input type="radio" name="step" id="step2" class="visually-hidden">
+        <input type="radio" name="step" id="step3" class="visually-hidden">
+        <input type="radio" name="step" id="step4" class="visually-hidden">
+        <input type="radio" name="step" id="step5" class="visually-hidden">
 
-</body>
+        <div class="quiz-progress"><i></i><i></i><i></i><i></i><i></i></div>
+
+        <!-- Pregunta 1 -->
+        <div class="panel panel-1">
+          <div class="q-text">¿Cuál es la mejor parte de nuestro día a día?</div>
+          <input type="radio" name="q1" id="q1a" class="visually-hidden">
+          <label for="q1a" class="opt">Cuando me escribes primero por la mañana</label>
+          <input type="radio" name="q1" id="q1b" class="visually-hidden">
+          <label for="q1b" class="opt">Cuando por fin nos vemos y todo lo demás desaparece</label>
+          <input type="radio" name="q1" id="q1c" class="visually-hidden">
+          <label for="q1c" class="opt">Ambas, no puedo elegir solo una</label>
+          <p class="q-response resp-1">Con cualquiera que hayas elegido, tienes razón: todo contigo se siente especial.</p>
+          <label for="step2" class="next-btn next-1">Siguiente</label>
+        </div>
+
+        <!-- Pregunta 2 -->
+        <div class="panel panel-2">
+          <div class="q-text">Si fuéramos un dúo con superpoderes, ¿cuál sería el nuestro?</div>
+          <input type="radio" name="q2" id="q2a" class="visually-hidden">
+          <label for="q2a" class="opt">Hacer que cualquier plan aburrido se vuelva divertido</label>
+          <input type="radio" name="q2" id="q2b" class="visually-hidden">
+          <label for="q2b" class="opt">Leernos la mente sin decir una palabra</label>
+          <input type="radio" name="q2" id="q2c" class="visually-hidden">
+          <label for="q2c" class="opt">Convertir un mal día en uno bueno con solo abrazarnos</label>
+          <p class="q-response resp-2">Sea cual sea, contigo definitivamente formamos un buen equipo.</p>
+          <label for="step3" class="next-btn next-2">Siguiente</label>
+        </div>
+
+        <!-- Pregunta 3 -->
+        <div class="panel panel-3">
+          <div class="q-text">¿Cuántas veces al día pienso en ti?</div>
+          <input type="radio" name="q3" id="q3a" class="visually-hidden">
+          <label for="q3a" class="opt">Todas las que pueda</label>
+          <input type="radio" name="q3" id="q3b" class="visually-hidden">
+          <label for="q3b" class="opt">Más de las que admito</label>
+          <input type="radio" name="q3" id="q3c" class="visually-hidden">
+          <label for="q3c" class="opt">Siempre, en algún rincón de mi mente</label>
+          <p class="q-response resp-3">La respuesta correcta es: constantemente.</p>
+          <label for="step4" class="next-btn next-3">Siguiente</label>
+        </div>
+
+        <!-- Pregunta 4 -->
+        <div class="panel panel-4">
+          <div class="q-text">¿Qué es lo que más admiro de ti?</div>
+          <input type="radio" name="q4" id="q4a" class="visually-hidden">
+          <label for="q4a" class="opt">Tu sonrisa</label>
+          <input type="radio" name="q4" id="q4b" class="visually-hidden">
+          <label for="q4b" class="opt">Tu fuerza para salir adelante</label>
+          <input type="radio" name="q4" id="q4c" class="visually-hidden">
+          <label for="q4c" class="opt">Simplemente, todo tú</label>
+          <p class="q-response resp-4">Todas son ciertas. Eres de mis personas favoritas en este mundo.</p>
+          <label for="step5" class="next-btn next-4">Siguiente</label>
+        </div>
+
+        <!-- Pregunta 5 -->
+        <div class="panel panel-5">
+          <div class="q-text">¿Qué tan seguro estoy de querer seguir a tu lado?</div>
+          <input type="radio" name="q5" id="q5a" class="visually-hidden">
+          <label for="q5a" class="opt">Completamente seguro</label>
+          <input type="radio" name="q5" id="q5b" class="visually-hidden">
+          <label for="q5b" class="opt">Más seguro que de cualquier otra cosa</label>
+          <input type="radio" name="q5" id="q5c" class="visually-hidden">
+          <label for="q5c" class="opt">Para siempre y sin dudarlo</label>
+          <p class="q-response resp-5">Esa es exactamente la verdad.</p>
+          <a href="#finalSection" class="next-btn next-5">Ver sorpresa final</a>
+        </div>
+      </div>
+
+      <p class="quiz-footnote">Cinco preguntas, un solo corazón: el nuestro</p>
+    </section>
+
+    <!-- FINAL -->
+    <section class="final-section" id="finalSection">
+      <svg width="52" height="52" viewBox="0 0 52 52" fill="none">
+        <path d="M26 46C26 46 6 33 6 18.5C6 10.5 12 5 19 5C23 5 26 8 26 8C26 8 29 5 33 5C40 5 46 10.5 46 18.5C46 33 26 46 26 46Z" fill="#e3a6b4"/>
+      </svg>
+      <h2 class="display" style="margin-top:1.2rem;">Ganaste, siempre ganamos</h2>
+      <p class="sub2">Sin importar cuántas respuestas hayamos acertado, lo único que de verdad importa es que seguimos eligiéndonos. Feliz aniversario, mi amor.</p>
+      <div class="final-date">Sábado 15 de Agosto · Salo &amp; Jose</div>
+    </section>
+
+    <footer>Hecho con amor para Salo</footer>
+
+  </body>
 </html>
