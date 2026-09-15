@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Para ti 🌼</title>
+<style>
+  :root{
+    --noche1:#0b1026;
+    --noche2:#161b3d;
+    --noche3:#1f2450;
+    --amarillo1:#ffd93d;
+    --amarillo2:#ffb703;
+    --amarillo3:#fff3b0;
+    --verde:#3a7d44;
+    --verde-osc:#1d3f22;
+    --verde-claro:#5a9c52;
+    --texto:#fff8e1;
+  }
+  *{box-sizing:border-box;}
+  html,body{
+    margin:0;
+    padding:0;
+    height:100%;
+    background:radial-gradient(ellipse at 50% 0%, var(--noche2), var(--noche1) 70%);
+    font-family:'Georgia', 'Iowan Old Style', serif;
+    overflow-x:hidden;
+    color:var(--texto);
+  }
+
+  .cielo{
+    position:fixed;
+    inset:0;
+    z-index:0;
+    overflow:hidden;
+  }
+
+  .estrella{
+    position:absolute;
+    background:#fff8e1;
+    border-radius:50%;
+    animation:parpadeo 3s ease-in-out infinite;
+  }
+
+  @keyframes parpadeo{
+    0%,100%{opacity:.2; transform:scale(.8);}
+    50%{opacity:1; transform:scale(1.2);}
+  }
+
+  .estrella-fugaz{
+    position:absolute;
+    width:2px;
+    height:2px;
+    background:linear-gradient(90deg,#fff, transparent);
+    border-radius:50%;
+    opacity:0;
+    animation:fugaz 6s linear infinite;
+  }
+
+  @keyframes fugaz{
+    0%{opacity:0; transform:translate(0,0) rotate(-25deg) scaleX(1);}
+    3%{opacity:1;}
+    12%{opacity:0; transform:translate(-320px,220px) rotate(-25deg) scaleX(60);}
+    100%{opacity:0;}
+  }
+
+  .luciernaga{
+    position:absolute;
+    width:4px;
+    height:4px;
+    border-radius:50%;
+    background:var(--amarillo3);
+    box-shadow:0 0 8px 3px rgba(255,217,61,.8);
+    opacity:0;
+    animation:flotar 9s ease-in-out infinite;
+  }
+
+  @keyframes flotar{
+    0%{opacity:0; transform:translate(0,0);}
+    15%{opacity:.9;}
+    50%{transform:translate(24px,-34px);}
+    85%{opacity:.7;}
+    100%{opacity:0; transform:translate(-14px,-60px);}
+  }
+
+  .luna{
+    position:absolute;
+    top:6%;
+    right:8%;
+    width:70px;
+    height:70px;
+    border-radius:50%;
+    background:radial-gradient(circle at 35% 35%, #fffef0, #ffe9a8 60%, #f4d375 100%);
+    box-shadow:0 0 40px 10px rgba(255,233,168,.35);
+  }
+
+  /* ---- COLINA / CAMPO DE FLORES DE FONDO ---- */
+  .colina{
+    position:fixed;
+    left:0;
+    right:0;
+    bottom:0;
+    height:62vh;
+    z-index:1;
+    background:linear-gradient(to bottom, transparent, var(--noche3) 40%);
+    overflow:hidden;
+    pointer-events:none;
+  }
+  .colina::before{
+    content:"";
+    position:absolute;
+    left:-10%;
+    right:-10%;
+    bottom:-10%;
+    height:82%;
+    background:radial-gradient(ellipse at 50% 100%, var(--verde-osc) 0%, #142317 75%);
+    border-radius:50% 50% 0 0 / 100% 100% 0 0;
+  }
+  .campo{
+    position:absolute;
+    inset:0;
+  }
+  .flor-campo{
+    position:absolute;
+    bottom:0;
+    transform-origin:bottom center;
+    animation:mecer 5s ease-in-out infinite;
+  }
+  .flor-campo svg{ display:block; filter:drop-shadow(0 2px 3px rgba(0,0,0,.35)); }
+
+  /* ---- FRANJA DE FLORES ARRIBA ---- */
+  .colina-arriba{
+    position:fixed;
+    left:0;
+    right:0;
+    top:0;
+    height:26vh;
+    z-index:1;
+    background:linear-gradient(to top, transparent, var(--noche3) 40%);
+    overflow:hidden;
+    pointer-events:none;
+  }
+  .colina-arriba::before{
+    content:"";
+    position:absolute;
+    left:-10%;
+    right:-10%;
+    top:-10%;
+    height:82%;
+    background:radial-gradient(ellipse at 50% 0%, var(--verde-osc) 0%, #142317 75%);
+    border-radius:0 0 50% 50% / 0 0 100% 100%;
+  }
+  .campo-arriba{
+    position:absolute;
+    inset:0;
+  }
+  .campo-arriba .flor-campo{
+    bottom:auto;
+    top:0;
+    transform-origin:top center;
+  }
+
+  .contenedor{
+    position:relative;
+    z-index:3;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    padding:60px 20px 46vh;
+    text-align:center;
+  }
+
+  .mensaje{
+    max-width:480px;
+    margin-bottom:10px;
+    opacity:0;
+    animation:aparecer 1.5s ease forwards;
+    animation-delay:.4s;
+    padding:26px 30px;
+    border-radius:18px;
+    background:radial-gradient(ellipse at 50% 0%, rgba(22,27,61,.55), rgba(11,16,38,.4) 75%);
+    backdrop-filter:blur(3px);
+  }
+
+  .mensaje h1{
+    font-size:clamp(1.6rem, 5vw, 2.3rem);
+    margin:0 0 14px;
+    color:var(--amarillo3);
+    text-shadow:0 0 18px rgba(255,217,61,.35);
+    font-weight:400;
+    letter-spacing:.5px;
+  }
+
+  .mensaje p{
+    font-size:1.05rem;
+    line-height:1.6;
+    color:#f4ecd0;
+    margin:0;
+  }
+
+  @keyframes aparecer{
+    from{opacity:0; transform:translateY(-14px);}
+    to{opacity:1; transform:translateY(0);}
+  }
+
+  @keyframes mecer{
+    0%,100%{transform:rotate(-3deg);}
+    50%{transform:rotate(3deg);}
+  }
+
+  .petalo{ fill:var(--amarillo1); }
+
+  .firma{
+    margin-top:26px;
+    font-style:italic;
+    font-size:1rem;
+    color:var(--amarillo3);
+    opacity:0;
+    animation:aparecer 1.5s ease forwards;
+    animation-delay:2.1s;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important;}
+  }
+
+  @media (max-width:480px){
+    .colina{height:52vh;}
+    .colina-arriba{height:20vh;}
+    .contenedor{padding-bottom:38vh;}
+  }
+</style>
+</head>
+<body>
+
+<div class="cielo" id="cielo">
+  <div class="luna"></div>
+</div>
+
+<div class="colina-arriba">
+  <div class="campo-arriba" id="campoArriba"></div>
+</div>
+
+<div class="colina">
+  <div class="campo" id="campo"></div>
+</div>
+
+<div class="contenedor" style="padding-top:22vh;">
+
+  <div class="mensaje">
+    <h1>Para alguien tan especial como tú</h1>
+    <p>Estas flores amarillas son un pedacito de sol, para que lo lleves contigo incluso en las noches. Que cada pétalo te recuerde lo mucho que iluminas todo a tu alrededor. 🌙✨</p>
+  </div>
+
+  <div class="firma">con cariño, para ti 🌼</div>
+
+</div>
+
+<script>
+  // ---- Estrellas ----
+  const cielo = document.getElementById('cielo');
+  const NUM_ESTRELLAS = 90;
+  for(let i=0;i<NUM_ESTRELLAS;i++){
+    const s = document.createElement('div');
+    s.className = 'estrella';
+    const size = Math.random()*2 + 1;
+    s.style.width = size+'px';
+    s.style.height = size+'px';
+    s.style.top = Math.random()*70+'%';
+    s.style.left = Math.random()*100+'%';
+    s.style.animationDelay = (Math.random()*3)+'s';
+    s.style.animationDuration = (2+Math.random()*3)+'s';
+    cielo.appendChild(s);
+  }
+
+  // Estrellas fugaces ocasionales
+  const NUM_FUGACES = 3;
+  for(let i=0;i<NUM_FUGACES;i++){
+    const f = document.createElement('div');
+    f.className = 'estrella-fugaz';
+    f.style.top = (Math.random()*40)+'%';
+    f.style.left = (55+Math.random()*40)+'%';
+    f.style.animationDelay = (Math.random()*10)+'s';
+    cielo.appendChild(f);
+  }
+
+  // Luciérnagas sobre el campo
+  const NUM_LUCIERNAGAS = 16;
+  for(let i=0;i<NUM_LUCIERNAGAS;i++){
+    const l = document.createElement('div');
+    l.className = 'luciernaga';
+    l.style.left = Math.random()*100+'%';
+    l.style.top = (60+Math.random()*38)+'%';
+    l.style.animationDelay = (Math.random()*9)+'s';
+    l.style.animationDuration = (7+Math.random()*4)+'s';
+    cielo.appendChild(l);
+  }
+
+  // ---- SVG de una flor tipo margarita/girasol ----
+  function petaloSVG(coreOuter, coreInner){
+    let petalos = '';
+    const n = 10;
+    for(let i=0;i<n;i++){
+      const ang = (360/n)*i;
+      petalos += `<ellipse class="petalo" cx="32" cy="14" rx="7" ry="14" transform="rotate(${ang} 32 32)"/>`;
+    }
+    const gid = 'g'+Math.random().toString(36).slice(2,9);
+    return `<svg viewBox="0 0 64 64">
+      ${petalos}
+      <circle cx="32" cy="32" r="10" fill="${coreOuter}"/>
+      <circle cx="32" cy="32" r="10" fill="url(#${gid})" opacity="0.5"/>
+      <defs>
+        <radialGradient id="${gid}" cx="35%" cy="35%">
+          <stop offset="0%" stop-color="${coreInner}"/>
+          <stop offset="100%" stop-color="${coreOuter}"/>
+        </radialGradient>
+      </defs>
+    </svg>`;
+  }
+
+  // ---- Campo de flores de fondo (varias filas para dar profundidad) ----
+  const campo = document.getElementById('campo');
+  const tonos = [
+    {out:'#8a5a12', inn:'#c98f2c'},
+    {out:'#7a4f10', inn:'#b97e22'},
+    {out:'#946318', inn:'#d99b30'},
+  ];
+
+  // Fila trasera: pequeñas, oscurecidas, más densas -> sensación de lejanía
+  const FILA_TRASERA = 110;
+  for(let i=0;i<FILA_TRASERA;i++){
+    const f = document.createElement('div');
+    f.className = 'flor-campo';
+    const size = 14 + Math.random()*10;
+    f.style.left = (Math.random()*100)+'%';
+    f.style.bottom = (Math.random()*22)+'%';
+    f.style.width = size+'px';
+    f.style.filter = 'brightness(0.55) saturate(0.8)';
+    f.style.animationDelay = (Math.random()*5)+'s';
+    f.style.animationDuration = (4+Math.random()*2)+'s';
+    const t = tonos[Math.floor(Math.random()*tonos.length)];
+    f.innerHTML = petaloSVG(t.out, t.inn);
+    campo.appendChild(f);
+  }
+
+  // Fila media
+  const FILA_MEDIA = 80;
+  for(let i=0;i<FILA_MEDIA;i++){
+    const f = document.createElement('div');
+    f.className = 'flor-campo';
+    const size = 20 + Math.random()*14;
+    f.style.left = (Math.random()*100)+'%';
+    f.style.bottom = (14+Math.random()*26)+'%';
+    f.style.width = size+'px';
+    f.style.filter = 'brightness(0.75)';
+    f.style.animationDelay = (Math.random()*5)+'s';
+    f.style.animationDuration = (4+Math.random()*2)+'s';
+    const t = tonos[Math.floor(Math.random()*tonos.length)];
+    f.innerHTML = petaloSVG(t.out, t.inn);
+    campo.appendChild(f);
+  }
+
+  // Fila delantera: más grandes y brillantes, en primer plano
+  const FILA_DELANTERA = 50;
+  for(let i=0;i<FILA_DELANTERA;i++){
+    const f = document.createElement('div');
+    f.className = 'flor-campo';
+    const size = 28 + Math.random()*20;
+    f.style.left = (Math.random()*100)+'%';
+    f.style.bottom = (Math.random()*14)+'%';
+    f.style.width = size+'px';
+    f.style.animationDelay = (Math.random()*5)+'s';
+    f.style.animationDuration = (4+Math.random()*2)+'s';
+    const t = tonos[Math.floor(Math.random()*tonos.length)];
+    f.innerHTML = petaloSVG(t.out, t.inn);
+    campo.appendChild(f);
+  }
+
+  // Fila muy al frente: grandes, apenas asomando en el borde inferior
+  const FILA_FRENTE = 26;
+  for(let i=0;i<FILA_FRENTE;i++){
+    const f = document.createElement('div');
+    f.className = 'flor-campo';
+    const size = 44 + Math.random()*22;
+    f.style.left = (Math.random()*100)+'%';
+    f.style.bottom = (-6+Math.random()*8)+'%';
+    f.style.width = size+'px';
+    f.style.animationDelay = (Math.random()*5)+'s';
+    f.style.animationDuration = (4+Math.random()*2)+'s';
+    const t = tonos[Math.floor(Math.random()*tonos.length)];
+    f.innerHTML = petaloSVG(t.out, t.inn);
+    campo.appendChild(f);
+  }
+
+  // ---- Franja de flores de arriba (dos capas de profundidad) ----
+  const campoArriba = document.getElementById('campoArriba');
+
+  const ARRIBA_TRASERA = 60;
+  for(let i=0;i<ARRIBA_TRASERA;i++){
+    const f = document.createElement('div');
+    f.className = 'flor-campo';
+    const size = 14 + Math.random()*10;
+    f.style.left = (Math.random()*100)+'%';
+    f.style.top = (Math.random()*18)+'%';
+    f.style.width = size+'px';
+    f.style.filter = 'brightness(0.55) saturate(0.8)';
+    f.style.animationDelay = (Math.random()*5)+'s';
+    f.style.animationDuration = (4+Math.random()*2)+'s';
+    const t = tonos[Math.floor(Math.random()*tonos.length)];
+    f.innerHTML = petaloSVG(t.out, t.inn);
+    campoArriba.appendChild(f);
+  }
+
+  const ARRIBA_DELANTERA = 34;
+  for(let i=0;i<ARRIBA_DELANTERA;i++){
+    const f = document.createElement('div');
+    f.className = 'flor-campo';
+    const size = 22 + Math.random()*16;
+    f.style.left = (Math.random()*100)+'%';
+    f.style.top = (Math.random()*12)+'%';
+    f.style.width = size+'px';
+    f.style.animationDelay = (Math.random()*5)+'s';
+    f.style.animationDuration = (4+Math.random()*2)+'s';
+    const t = tonos[Math.floor(Math.random()*tonos.length)];
+    f.innerHTML = petaloSVG(t.out, t.inn);
+    campoArriba.appendChild(f);
+  }
+</script>
+
+</body>
+</html>
