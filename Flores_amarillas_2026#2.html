@@ -1,3 +1,6 @@
+
+
+Flowers · HTML
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -6,127 +9,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Flowers 🌼</title>
         <style>
-        /* ===== style.css (pantalla de saludo) ===== */
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,500;1,900&display=swap');
-        *{
-            font-family: 'Poppins',cursive;
-        }
-        body{
-            color: azure;
-            width: 100%;
-            height: 82vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background-color: black;
-            /* padding-top: -30; */
-        }
-
-        .botones{
-            padding: 9px;
-            border-radius: 80px;
-            background-color: transparent;
-            border: none;
-        }
-
-        .botones a{
-            background-color: #0a2be9;
-            padding: 9px;
-            border-radius: 80px;
-            -webkit-border-radius: 80px;
-            -moz-border-radius: 80px;
-            -ms-border-radius: 80px;
-            -o-border-radius: 80px;
-
-        }
-
-        .botones a:focus{
-            background-color: rgb(50, 194, 194);
-        }
-
-        .greetings{
-            font-size: 7rem;
-            font-weight: 900;
-        }
-        .greetings > span{
-            animation: glow 2.5s ease-in-out infinite;
-        }
-        @keyframes glow{
-            0%, 100%{
-                color: #fff;
-                text-shadow: 0 0 12px #39c6d6, 0 0 50px #39c6d6, 0 0 100px #39c6d6;
-            }
-            10%, 90%{
-                color: #111;
-                text-shadow: none;
-            }
-        }
-        .greetings > span:nth-child(2){
-            animation-delay: .2s ;
-        }
-        .greetings > span:nth-child(3){
-            animation-delay: .4s ;
-        }
-        .greetings > span:nth-child(4){
-            animation-delay: .6s;
-        }
-        .greetings > span:nth-child(5){
-            animation-delay: .8s;
-        }
-        .greetings > span:nth-child(6){
-            animation-delay: 1s;
-        }
-
-        .description{
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-        }
-
-        .button a{
-            text-decoration: none;
-            font-size: 1rem;
-            color: #111;
-        }
-
-        @media screen and (max-width:574px){
-            .greetings{
-                display: block;
-                font-size: 4rem;
-                font-weight: 800;
-                text-align: center;
-            }
-            .description{
-                font-size: 2rem;
-            }
-            
-            .button a{
-                font-size: 1rem;
-            }
-        }
-
-        /* ===== ajustes para tener las dos pantallas en un solo documento ===== */
-        html, body {
-        margin:0;
-        padding:0;
-        height:100%;
-        background-color:#000;
-        }
-
-        #screen-greeting{
-            width:100%;
-            height:100vh;
-            display:flex;
-            flex-direction:column;
-            align-items:center;
-            justify-content:center;
-        }
-        @keyframes fadeOut{
-            from{opacity:1;}
-            to{opacity:0;}
-        }
-
-
         /* ===== main.css (escena de flores) ===== */
         *,
         *::after,
@@ -135,13 +17,25 @@
         margin: 0;
         box-sizing: border-box;
         }
-
+ 
         :root {
         --dark-color: #000;
         }
-
+ 
+        html, body {
+        margin:0;
+        padding:0;
+        height:100%;
+        background-color:#000;
+        }
+ 
+        @keyframes fadeOut{
+            from{opacity:1;}
+            to{opacity:0;}
+        }
+ 
         #screen-flower {
-        display: none;
+        display: flex;
         align-items: flex-end;
         justify-content: center;
         width: 100%;
@@ -151,29 +45,7 @@
         perspective: 1000px;
         position: relative;
         }
-        #screen-flower.active {
-        display: flex;
-        }
-
-        #lyrics {
-        font-size: 28px;
-        font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-        color: white;
-        position: absolute;
-        margin-bottom: 20%;
-        z-index: 1;
-        font-weight: bold;
-        letter-spacing: 4px;
-        }
-        @media only screen and (max-width: 600px) {
-        /* Estilos específicos para dispositivos con un ancho máximo de 600px */
-        #lyrics {
-            font-size: 14px; /* Reduce el tamaño del texto para dispositivos más pequeños */
-            margin-bottom: 530px;
-            letter-spacing: 3px;
-        }
-
-        }
+ 
         .titulo {
         margin-bottom: 180px;
         font-family: "Arial Narrow", Arial, sans-serif;
@@ -193,7 +65,7 @@
             opacity: 1;
         }
         }
-
+ 
         .night {
         z-index: -1;
         position: absolute;
@@ -236,25 +108,22 @@
             ),
             linear-gradient(90deg, rgb(0, 255, 250), rgb(240, 240, 240));
         }
-
+ 
         .flowers {
         position: relative;
         transform: scale(0.9);
-        /*margin-bottom: 100px;
-        */
         }
-
+ 
         @media only screen and (max-width: 600px) {
-        /* Estilos específicos para dispositivos con un ancho máximo de 600px */
         .flowers {
             font-size: 14px;
             margin-bottom: 35%;
             letter-spacing: 3px;
             transform: scale(1.0);
         }
-
+ 
         }
-
+ 
         .flower {
         position: absolute;
         bottom: 10vmin;
@@ -374,7 +243,6 @@
         width: 8vmin;
         height: 8vmin;
         background-color: #f9fd25;
-        /* background-color: #fd2525; */
         filter: blur(10vmin);
         }
         .flower__leaf {
@@ -1328,7 +1196,7 @@
             transform: rotate(15deg) rotateY(-180deg) scale(0);
         }
         }
-
+ 
         .long-g {
         position: absolute;
         bottom: 25vmin;
@@ -1464,7 +1332,7 @@
         -webkit-animation: leaf-ans-3 3s linear infinite;
         animation: leaf-ans-3 3s linear infinite;
         }
-
+ 
         @-webkit-keyframes leaf-ans-1 {
         0%,
         100% {
@@ -1474,7 +1342,7 @@
             transform: rotate(5deg) scale(1.1);
         }
         }
-
+ 
         @keyframes leaf-ans-1 {
         0%,
         100% {
@@ -1524,14 +1392,14 @@
         -webkit-animation: grow-ans 2s var(--d) backwards;
         animation: grow-ans 2s var(--d) backwards;
         }
-
+ 
         @-webkit-keyframes grow-ans {
         0% {
             transform: scale(0);
             opacity: 0;
         }
         }
-
+ 
         @keyframes grow-ans {
         0% {
             transform: scale(0);
@@ -1726,53 +1594,27 @@
         -webkit-animation: growing-grass-ans 1s 2s backwards;
         animation: growing-grass-ans 1s 2s backwards;
         }
-
+ 
         @-webkit-keyframes growing-grass-ans {
         0% {
             transform: scale(0);
         }
         }
-
+ 
         @keyframes growing-grass-ans {
         0% {
             transform: scale(0);
         }
         }
-        .container * {
-        -webkit-animation-play-state: paused !important;
-        animation-play-state: paused !important;
-        } 
         </style>
     </head>
-
+ 
     <body>
-
-        <div id="screen-greeting">
-        <div class="greetings">
-            <span>H</span>
-            <span>o</span>
-            <span>l</span>
-            <span>a</span>
-            <span>!</span>
-        </div>
-        <div class="description">
-            <span>ESTE DETALLE ES PARA TI :)</span>
-        </div>
-        <div class="button">
-            <button class="botones">
-                <a href="#" id="btnEntrar" style="color: #fff;">CLICK AQUÍ</a>
-            </button>
-        </div>
-        </div>
-
-        <div id="screen-flower" class="container">
-        <audio id="cancion" src="sound/ChristianBasso&HaienQiu-Flowers.mp3" preload="auto"></audio>
-        <div id="lyrics">
-
-        </div>
+ 
+        <div id="screen-flower">
         <h1 class="titulo">Estas flores amarillas son un reflejo de la alegría que traes a mi vida. <br> <br>
         Gracias por iluminar mis días con tu presencia.</h1>
-
+ 
         <div class="night"></div>
         <div class="flowers">
         <div class="flower flower--1">
@@ -1782,7 +1624,7 @@
             <div class="flower__leaf flower__leaf--3"></div>
             <div class="flower__leaf flower__leaf--4"></div>
             <div class="flower__white-circle"></div>
-
+ 
             <div class="flower__light flower__light--1"></div>
             <div class="flower__light flower__light--2"></div>
             <div class="flower__light flower__light--3"></div>
@@ -1801,7 +1643,7 @@
             <div class="flower__line__leaf flower__line__leaf--6"></div>
             </div>
         </div>
-
+ 
         <div class="flower flower--2">
             <div class="flower__leafs flower__leafs--2">
             <div class="flower__leaf flower__leaf--1"></div>
@@ -1809,7 +1651,7 @@
             <div class="flower__leaf flower__leaf--3"></div>
             <div class="flower__leaf flower__leaf--4"></div>
             <div class="flower__white-circle"></div>
-
+ 
             <div class="flower__light flower__light--1"></div>
             <div class="flower__light flower__light--2"></div>
             <div class="flower__light flower__light--3"></div>
@@ -1826,7 +1668,7 @@
             <div class="flower__line__leaf flower__line__leaf--4"></div>
             </div>
         </div>
-
+ 
         <div class="flower flower--3">
             <div class="flower__leafs flower__leafs--3">
             <div class="flower__leaf flower__leaf--1"></div>
@@ -1834,7 +1676,7 @@
             <div class="flower__leaf flower__leaf--3"></div>
             <div class="flower__leaf flower__leaf--4"></div>
             <div class="flower__white-circle"></div>
-
+ 
             <div class="flower__light flower__light--1"></div>
             <div class="flower__light flower__light--2"></div>
             <div class="flower__light flower__light--3"></div>
@@ -1851,14 +1693,14 @@
             <div class="flower__line__leaf flower__line__leaf--4"></div>
             </div>
         </div>
-
+ 
         <div class="grow-ans" style="--d: 1.2s">
             <div class="flower__g-long">
             <div class="flower__g-long__top"></div>
             <div class="flower__g-long__bottom"></div>
             </div>
         </div>
-
+ 
         <div class="growing-grass">
             <div class="flower__grass flower__grass--1">
             <div class="flower__grass--top"></div>
@@ -1874,7 +1716,7 @@
             <div class="flower__grass__overlay"></div>
             </div>
         </div>
-
+ 
         <div class="growing-grass">
             <div class="flower__grass flower__grass--2">
             <div class="flower__grass--top"></div>
@@ -1890,19 +1732,19 @@
             <div class="flower__grass__overlay"></div>
             </div>
         </div>
-
+ 
         <div class="grow-ans" style="--d: 2.4s">
             <div class="flower__g-right flower__g-right--1">
             <div class="leaf"></div>
             </div>
         </div>
-
+ 
         <div class="grow-ans" style="--d: 2.8s">
             <div class="flower__g-right flower__g-right--2">
             <div class="leaf"></div>
             </div>
         </div>
-
+ 
         <div class="grow-ans" style="--d: 2.8s">
             <div class="flower__g-front">
             <div
@@ -1948,7 +1790,7 @@
             <div class="flower__g-front__line"></div>
             </div>
         </div>
-
+ 
         <div class="grow-ans" style="--d: 3.2s">
             <div class="flower__g-fr">
             <div class="leaf"></div>
@@ -1962,7 +1804,7 @@
             <div class="flower__g-fr__leaf flower__g-fr__leaf--8"></div>
             </div>
         </div>
-
+ 
         <div class="long-g long-g--0">
             <div class="grow-ans" style="--d: 3s">
             <div class="leaf leaf--0"></div>
@@ -1977,7 +1819,7 @@
             <div class="leaf leaf--3"></div>
             </div>
         </div>
-
+ 
         <div class="long-g long-g--1">
             <div class="grow-ans" style="--d: 3.6s">
             <div class="leaf leaf--0"></div>
@@ -1992,7 +1834,7 @@
             <div class="leaf leaf--3"></div>
             </div>
         </div>
-
+ 
         <div class="long-g long-g--2">
             <div class="grow-ans" style="--d: 4s">
             <div class="leaf leaf--0"></div>
@@ -2007,7 +1849,7 @@
             <div class="leaf leaf--3"></div>
             </div>
         </div>
-
+ 
         <div class="long-g long-g--3">
             <div class="grow-ans" style="--d: 4s">
             <div class="leaf leaf--0"></div>
@@ -2022,7 +1864,7 @@
             <div class="leaf leaf--3"></div>
             </div>
         </div>
-
+ 
         <div class="long-g long-g--4">
             <div class="grow-ans" style="--d: 4s">
             <div class="leaf leaf--0"></div>
@@ -2037,7 +1879,7 @@
             <div class="leaf leaf--3"></div>
             </div>
         </div>
-
+ 
         <div class="long-g long-g--5">
             <div class="grow-ans" style="--d: 4s">
             <div class="leaf leaf--0"></div>
@@ -2052,7 +1894,7 @@
             <div class="leaf leaf--3"></div>
             </div>
         </div>
-
+ 
         <div class="long-g long-g--6">
             <div class="grow-ans" style="--d: 4.2s">
             <div class="leaf leaf--0"></div>
@@ -2067,7 +1909,7 @@
             <div class="leaf leaf--3"></div>
             </div>
         </div>
-
+ 
         <div class="long-g long-g--7">
             <div class="grow-ans" style="--d: 3s">
             <div class="leaf leaf--0"></div>
@@ -2084,93 +1926,8 @@
         </div>
         </div>
         </div>
-
+ 
         <script>
-
-        // ====== Pantalla 1 -> Pantalla 2 ======
-        const pantallaSaludo = document.getElementById('screen-greeting');
-        const pantallaFlores = document.getElementById('screen-flower');
-        const btnEntrar = document.getElementById('btnEntrar');
-        const audio = document.getElementById('cancion');
-
-        function iniciarEscenaFlores(){
-        pantallaSaludo.style.display = 'none';
-        pantallaFlores.classList.add('active');
-
-        // Quita la pausa de animaciones (equivalente al main.js original)
-        pantallaFlores.classList.remove('container');
-
-        // Intenta reproducir el audio (requiere el archivo sound/ChristianBasso&HaienQiu-Flowers.mp3 junto al HTML)
-        if(audio){
-        audio.currentTime = 0;
-        audio.play().catch(()=>{ /* el navegador puede bloquear el autoplay sin más interacción */ });
-        }
-
-        iniciarLetras();
-        iniciarOcultarTitulo();
-        }
-
-        btnEntrar.addEventListener('click', (e)=>{
-        e.preventDefault();
-        iniciarEscenaFlores();
-        });
-
-        // ====== anim.js: sincronizar letras con la canción ======
-        var lyrics = document.querySelector("#lyrics");
-
-        var lyricsData = [
-        { text: "At the time", time: 15 },
-        { text: "The whisper of birds", time: 18 },
-        { text: "Lonely before the sun cried", time: 27 },
-        { text: "Fell from the sky", time: 32 },
-        { text: "Like water drops", time: 33 },
-        { text: "Where I'm now? I don't know why", time: 41 },
-        { text: "Nice butterflies in my hands", time: 47 },
-        { text: "Too much light for twilight", time: 54 },
-        { text: "In the mood for the flowers love", time: 59 },
-        { text: "That vision", time: 67 },
-        { text: "Really strong, blew my mind", time: 72 },
-        { text: "Silence Let me see what it was", time: 78 },
-        { text: "I only want to live in clouds", time: 83 },
-        { text: "Where I'm now? I don't know why", time: 91 },
-        { text: "Nice butterflies in my hands", time: 97 },
-        { text: "Too much light for twilight", time: 104 },
-        { text: "In the mood for the flowers love", time: 108 },
-        { text: "At the time", time: 144 },
-        { text: "The whisper of birds", time: 148 },
-        { text: "Lonely before the sun cried", time: 153 },
-        { text: "Fell from the sky", time: 158 },
-        { text: "Like water drops", time: 164 },
-        { text: "Where I'm now? I don't know why", time: 169 },
-        { text: "Nice butterflies in my hands", time: 176 },
-        { text: "Too much light for twilight", time: 183 },
-        { text: "In the mood for the flowers", time: 188 },
-        { text: "Love.", time: 140 },
-        ];
-
-        var lyricsInterval = null;
-        function updateLyrics() {
-        var time = Math.floor(audio.currentTime);
-        var currentLine = lyricsData.find(
-        (line) => time >= line.time && time < line.time + 6
-        );
-
-        if (currentLine) {
-        var fadeInDuration = 0.1;
-        var opacity = Math.min(1, (time - currentLine.time) / fadeInDuration);
-        lyrics.style.opacity = opacity;
-        lyrics.innerHTML = currentLine.text;
-        } else {
-        lyrics.style.opacity = 0;
-        lyrics.innerHTML = "";
-        }
-        }
-        function iniciarLetras(){
-        if(lyricsInterval) clearInterval(lyricsInterval);
-        lyricsInterval = setInterval(updateLyrics, 1000);
-        }
-
-        // ====== anim.js: ocultar el título tras un rato ======
         function ocultarTitulo() {
         var titulo = document.querySelector(".titulo");
         titulo.style.animation = "fadeOut 3s ease-in-out forwards";
@@ -2178,11 +1935,9 @@
         titulo.style.display = "none";
         }, 3000);
         }
-        function iniciarOcultarTitulo(){
         setTimeout(ocultarTitulo, 216000);
-        }
-
         </script>
-
+ 
     </body>
 </html>
+ 
